@@ -162,9 +162,7 @@ export default async function Footer() {
             © {new Date().getFullYear()} {storeName}. All rights reserved.
           </Text>
           <Text className="txt-compact-small text-right">
-            Office Address: Update with your local office address.
-            <br />
-            Contact: Update with your phone number.
+            Contact: <a href="mailto:[EMAIL_ADDRESS]">info@verdanova.com</a>
           </Text>
         </div>
       </div>
