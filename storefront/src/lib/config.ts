@@ -1,17 +1,15 @@
 import { getLocaleHeader } from "@lib/util/get-locale-header"
 import Medusa, { FetchArgs, FetchInput } from "@medusajs/js-sdk"
 
-// Defaults to standard port for Medusa server
-let MEDUSA_BACKEND_URL = "http://localhost:9000"
+const MEDUSA_BACKEND_URL =
+  process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000"
 
-if (process.env.MEDUSA_BACKEND_URL) {
-  MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL
-}
+const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
 
 export const sdk = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
   debug: process.env.NODE_ENV === "development",
-  publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
+  publishableKey: PUBLISHABLE_KEY,
 })
 
 const originalFetch = sdk.client.fetch.bind(sdk.client)
@@ -20,20 +18,23 @@ sdk.client.fetch = async <T>(
   input: FetchInput,
   init?: FetchArgs
 ): Promise<T> => {
-  const headers = init?.headers ?? {}
-  let localeHeader: Record<string, string | null> | undefined
-  try {
-    localeHeader = await getLocaleHeader()
-    headers["x-medusa-locale"] ??= localeHeader["x-medusa-locale"]
-  } catch {}
+  const headers: Record<string, string | null> = {
+    ...(init?.headers as Record<string, string | null>),
+  }
 
-  const newHeaders = {
-    ...localeHeader,
-    ...headers,
+  try {
+    const localeHeader = await getLocaleHeader()
+    if (localeHeader?.["x-medusa-locale"] && !headers["x-medusa-locale"]) {
+      headers["x-medusa-locale"] = localeHeader["x-medusa-locale"]
+    }
+  } catch {
+    // Ignore locale resolution errors
   }
-  init = {
+
+  const nextInit: FetchArgs = {
     ...init,
-    headers: newHeaders,
+    headers,
   }
-  return originalFetch(input, init)
+
+  return originalFetch<T>(input, nextInit)
 }
