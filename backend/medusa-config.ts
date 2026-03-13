@@ -1,6 +1,11 @@
-import { loadEnv, defineConfig } from '@medusajs/utils'
+import { loadEnv, defineConfig, Modules } from '@medusajs/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+
+const backendUrl =
+  process.env.BACKEND_PUBLIC_URL ||
+  process.env.RAILWAY_PUBLIC_DOMAIN_VALUE ||
+  'http://localhost:9000'
 
 module.exports = defineConfig({
   projectConfig: {
@@ -17,6 +22,39 @@ module.exports = defineConfig({
     },
   },
   modules: [
+    {
+      key: Modules.FILE,
+      resolve: '@medusajs/file',
+      options: {
+        providers: [
+          ...(process.env.MINIO_ENDPOINT &&
+          process.env.MINIO_ACCESS_KEY &&
+          process.env.MINIO_SECRET_KEY
+            ? [
+                {
+                  resolve: './src/modules/minio-file',
+                  id: 'minio',
+                  options: {
+                    endPoint: process.env.MINIO_ENDPOINT,
+                    accessKey: process.env.MINIO_ACCESS_KEY,
+                    secretKey: process.env.MINIO_SECRET_KEY,
+                    bucket: process.env.MINIO_BUCKET,
+                  },
+                },
+              ]
+            : [
+                {
+                  resolve: '@medusajs/file-local',
+                  id: 'local',
+                  options: {
+                    upload_dir: 'static',
+                    backend_url: `${backendUrl}/static`,
+                  },
+                },
+              ]),
+        ],
+      },
+    },
     {
       resolve: "@medusajs/medusa/notification",
       options: {
