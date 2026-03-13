@@ -439,9 +439,19 @@ export async function updateRegion(countryCode: string, currentPath: string) {
   }
 
   if (cartId) {
-    await updateCart({ region_id: region.id })
-    const cartCacheTag = await getCacheTag("carts")
-    revalidateTag(cartCacheTag)
+    try {
+      await updateCart({ region_id: region.id })
+      const cartCacheTag = await getCacheTag("carts")
+      revalidateTag(cartCacheTag)
+    } catch (error: any) {
+      const message = String(error?.message || "")
+      if (message.includes("already completed")) {
+        await removeCartId()
+        await getOrSetCart(countryCode)
+      } else {
+        throw error
+      }
+    }
   }
 
   const regionCacheTag = await getCacheTag("regions")
