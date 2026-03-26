@@ -1,4 +1,7 @@
+"use client"
+
 import { Button, Heading } from "@medusajs/ui"
+import { ChevronDown } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type HeroProps = {
@@ -19,10 +22,10 @@ const Hero = ({ page }: HeroProps) => {
 
   return (
     <div
-      className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle bg-center bg-cover"
+      className="h-[95vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle bg-center bg-cover"
       style={backgroundImage ? { backgroundImage } : undefined}
     >
-      <div className="absolute inset-0 z-0 bg-overlay" />
+      {/* <div className="absolute inset-0 z-0 bg-overlay" /> */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6 max-w-4xl mx-auto">
         <span>
           <Heading
@@ -44,6 +47,18 @@ const Hero = ({ page }: HeroProps) => {
           </Button>
         </LocalizedClientLink>
       </div>
+      <button
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white hover:text-white transition-all duration-1000 animate-bounce"
+        onClick={() => {
+          window.scrollTo({
+            top: window.innerHeight * 0.95,
+            behavior: "smooth",
+          })
+        }}
+        aria-label="Scroll down"
+      >
+        <ChevronDown size={32} />
+      </button>
     </div>
   )
 }
