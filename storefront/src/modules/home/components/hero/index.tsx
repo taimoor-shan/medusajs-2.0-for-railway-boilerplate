@@ -13,8 +13,8 @@ type HeroProps = {
 }
 
 const Hero = ({ page }: HeroProps) => {
-  const title = page?.title || "Luxe Linen"
-  const excerpt = page?.excerpt || "Soft essentials for everyday living"
+  const title = page?.title || "Soft essentials for everyday living"
+  const excerpt = page?.excerpt || "Handcrafted botanical pieces designed for refined interiors, bringing timeless greenery to homes, hotels, and architectural spaces across Europe."
 
   const backgroundImage = page?.featured_image
     ? `url(${page.featured_image})`
