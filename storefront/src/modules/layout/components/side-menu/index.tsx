@@ -1,7 +1,7 @@
 "use client"
 
 import { Popover, PopoverPanel, Transition } from "@headlessui/react"
-import { ArrowRightMini, XMark } from "@medusajs/icons"
+import { ArrowRightMini, BarsThree, XMark } from "@medusajs/icons"
 import { Text, clx, useToggleState } from "@medusajs/ui"
 import { Fragment } from "react"
 
@@ -23,6 +23,7 @@ type SideMenuProps = {
   locales: Locale[] | null
   currentLocale: string | null
   storeName?: string
+  triggerClassName?: string
 }
 
 const SideMenu = ({
@@ -30,6 +31,7 @@ const SideMenu = ({
   locales,
   currentLocale,
   storeName = "Luxe Linen",
+  triggerClassName,
 }: SideMenuProps) => {
   const countryToggleState = useToggleState()
   const languageToggleState = useToggleState()
@@ -43,9 +45,14 @@ const SideMenu = ({
               <div className="relative flex h-full">
                 <Popover.Button
                   data-testid="nav-menu-button"
-                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  className={clx(
+                    "relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 ease-out hover:text-ui-fg-base focus:outline-none",
+                    triggerClassName
+                  )}
+                  aria-label="Open menu"
                 >
-                  Menu
+                  <BarsThree />
+                  <span className="sr-only">Menu</span>
                 </Popover.Button>
               </div>
 

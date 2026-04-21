@@ -24,9 +24,25 @@ type CountryOption = {
 type CountrySelectProps = {
   toggleState: StateType
   regions: HttpTypes.StoreRegion[]
+  /**
+   * Optional label shown before the selected country name.
+   * Pass `null` to hide (useful in tight UI like the top nav).
+   */
+  label?: string | null
+  /**
+   * Optional class overrides for reusing the component in different layouts.
+   */
+  buttonClassName?: string
+  dropdownWrapperClassName?: string
 }
 
-const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
+const CountrySelect = ({
+  toggleState,
+  regions,
+  label = "Shipping to:",
+  buttonClassName,
+  dropdownWrapperClassName,
+}: CountrySelectProps) => {
   const [current, setCurrent] = useState<
     | { country: string | undefined; region: string; label: string | undefined }
     | undefined
@@ -73,9 +89,11 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
             : undefined
         }
       >
-        <ListboxButton className="py-1 w-full">
+        <ListboxButton
+          className={["py-1 w-full", buttonClassName].filter(Boolean).join(" ")}
+        >
           <div className="txt-compact-small flex items-start gap-x-2">
-            <span>Shipping to:</span>
+            {label !== null ? <span>{label}</span> : null}
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
                 {/* @ts-ignore */}
@@ -92,7 +110,14 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
             )}
           </div>
         </ListboxButton>
-        <div className="flex relative w-full min-w-[320px]">
+        <div
+          className={[
+            "relative w-full",
+            dropdownWrapperClassName,
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
           <Transition
             show={state}
             as={Fragment}
@@ -100,10 +125,10 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <ListboxOptions
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full"
-              static
-            >
+          <ListboxOptions
+  className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 z-[900] max-h-[442px] w-full min-w-[320px] overflow-y-scroll rounded-rounded bg-white text-small-regular uppercase text-black drop-shadow-md no-scrollbar"
+  static
+>
               {options?.map((o, index) => {
                 return (
                   <ListboxOption

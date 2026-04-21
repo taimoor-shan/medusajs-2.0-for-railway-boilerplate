@@ -8,6 +8,7 @@ import {
 } from "@headlessui/react"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
+import { ShoppingCart } from "@medusajs/icons"
 import { Button } from "@medusajs/ui"
 import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
@@ -19,8 +20,10 @@ import { Fragment, useEffect, useRef, useState } from "react"
 
 const CartDropdown = ({
   cart: cartState,
+  iconOnly = false,
 }: {
   cart?: HttpTypes.StoreCart | null
+  iconOnly?: boolean
 }) => {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
@@ -82,10 +85,28 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full">
           <LocalizedClientLink
-            className="hover:text-ui-fg-base"
+            className={
+              iconOnly
+                ? "flex h-11 w-11 items-center justify-center rounded-full hover:text-ui-fg-base"
+                : "hover:text-ui-fg-base"
+            }
             href="/cart"
             data-testid="nav-cart-link"
-          >{`Cart (${totalItems})`}</LocalizedClientLink>
+            aria-label={
+              totalItems > 0
+                ? `Shopping cart with ${totalItems} items`
+                : "Shopping cart"
+            }
+          >
+            {iconOnly ? (
+              <>
+                <ShoppingCart />
+                <span className="sr-only">{`Cart (${totalItems})`}</span>
+              </>
+            ) : (
+              `Cart (${totalItems})`
+            )}
+          </LocalizedClientLink>
         </PopoverButton>
         <Transition
           show={cartDropdownOpen}
