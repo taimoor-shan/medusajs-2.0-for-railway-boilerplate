@@ -42,6 +42,30 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         >
           {product.description}
         </Text>
+
+        {(product.metadata as Record<string, any>)?.uniqueness_note && (
+          <Text className="text-small-regular text-ui-fg-muted italic mt-4">
+            {(product.metadata as Record<string, any>).uniqueness_note}
+          </Text>
+        )}
+
+        {product.tags && product.tags.length > 0 && (
+          <div className="mt-6">
+            <Text className="text-small-regular text-ui-fg-muted mb-2">
+              Ideal for
+            </Text>
+            <div className="flex flex-wrap gap-2">
+              {product.tags.map((tag) => (
+                <span
+                  key={tag.id}
+                  className="text-xs px-3 py-1 rounded-full border border-ui-border-base text-ui-fg-subtle"
+                >
+                  {tag.value}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )

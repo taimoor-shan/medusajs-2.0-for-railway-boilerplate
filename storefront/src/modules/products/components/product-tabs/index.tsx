@@ -14,42 +14,82 @@ type ProductTabsProps = {
 const ProductTabs = ({ product }: ProductTabsProps) => {
   const metadata = (product.metadata as Record<string, any>) || {}
 
-  // Scalable schema: Read from metadata, but fallback to rich mock data for layout demonstration
-  const keyFeatures = metadata?.key_features || [
-    "Handmade artificial flower plant.",
-    "Authentic texture and natural character.",
-    "Highest quality artificial leaves and flowers for a realistic and natural look.",
-    "Shiny black acrylic flower pot.",
-    "Maintenance-free: no watering – no sun – no care and Hypoallergenic"
-  ]
-
-  const specs = metadata?.specifications || {
-    "Size": "190cm - 200cm",
-    "Width/Depth": "80cm - 100cm",
-    "Pot Size": "72cm x 72cm, height 127cm",
-    "Usage": "Designed for indoor use"
+  const keyFeaturesRaw = metadata?.key_features
+  let parsedKeyFeatures: string[] = []
+  
+  if (Array.isArray(keyFeaturesRaw)) {
+    parsedKeyFeatures = keyFeaturesRaw
+  } else if (typeof keyFeaturesRaw === "string") {
+    try {
+      // If the user pasted `"A", "B"`, wrapping in brackets makes it valid JSON
+      const wrapped = keyFeaturesRaw.trim().startsWith("[") 
+        ? keyFeaturesRaw 
+        : `[${keyFeaturesRaw}]`;
+      const parsed = JSON.parse(wrapped);
+      if (Array.isArray(parsed)) {
+        parsedKeyFeatures = parsed;
+      }
+    } catch (e) {
+      // Fallback: split by newlines or commas, and remove extra quotes
+      parsedKeyFeatures = keyFeaturesRaw
+        .split(/\n|,(?=\s*")/)
+        .map((s) => s.replace(/^"|"$/g, "").trim())
+        .filter((s) => s.length > 0)
+    }
   }
 
-  const care = metadata?.care_instructions || "Maintenance-free elegance: Enjoy the beauty of this artificial plant all year round, without any ongoing care or seasonal changes – no watering – no sun – no care. Hypoallergenic design: Free from pollen, mold, and seasonal allergens."
+  const care = metadata?.care_instructions as string | undefined
+  const packagingInfo = metadata?.packaging_info as string | undefined
 
-  const tabs = [
-    {
+  const potRaw = metadata?.pot
+  let parsedPot: Record<string, any> | undefined = undefined
+  if (typeof potRaw === "object" && potRaw !== null && !Array.isArray(potRaw)) {
+    parsedPot = potRaw
+  } else if (typeof potRaw === "string") {
+    try {
+      const parsed = JSON.parse(potRaw)
+      if (typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)) {
+        parsedPot = parsed
+      }
+    } catch (e) {
+      // Not valid JSON, ignore
+    }
+  }
+
+  // Build tabs dynamically — only show tabs that have data
+  const tabs: { label: string; component: React.ReactNode }[] = []
+
+  if (parsedKeyFeatures.length > 0) {
+    tabs.push({
       label: "Key Features",
-      component: <KeyFeaturesTab features={keyFeatures as string[]} />,
-    },
-    {
-      label: "Specifications",
-      component: <ProductInfoTab product={product} specs={specs as Record<string, string>} />,
-    },
-    {
+      component: <KeyFeaturesTab features={parsedKeyFeatures} />,
+    })
+  }
+
+  // Specifications tab always shows if product has any native fields
+  tabs.push({
+    label: "Specifications",
+    component: <SpecificationsTab product={product} pot={parsedPot} />,
+  })
+
+  if (care) {
+    tabs.push({
       label: "Maintenance & Care",
-      component: <CareTab instructions={care as string} />,
-    },
-    {
-      label: "Shipping & Returns",
-      component: <ShippingInfoTab />,
-    },
-  ]
+      component: <CareTab instructions={care} />,
+    })
+  }
+
+  if (packagingInfo) {
+    tabs.push({
+      label: "Packaging & Delivery",
+      component: <PackagingTab info={packagingInfo} />,
+    })
+  }
+
+  tabs.push({
+    label: "Shipping & Returns",
+    component: <ShippingInfoTab />,
+  })
 
   return (
     <div className="w-full">
@@ -91,30 +131,104 @@ const CareTab = ({ instructions }: { instructions: string }) => {
   )
 }
 
-type ProductInfoTabProps = {
-  product: HttpTypes.StoreProduct
-  specs: Record<string, string>
+const PackagingTab = ({ info }: { info: string }) => {
+  return (
+    <div className="text-small-regular py-8">
+      <p className="text-ui-fg-subtle leading-loose">{info}</p>
+    </div>
+  )
 }
 
-const ProductInfoTab = ({ product, specs }: ProductInfoTabProps) => {
-  // We merge native Medusa specs with custom metadata specs
-  const combinedSpecs = {
-    ...specs,
-    ...(product.material && { Material: product.material }),
-    ...(product.origin_country && { "Country of origin": product.origin_country }),
-    ...(product.weight && { Weight: `${product.weight} g` }),
+type SpecificationsTabProps = {
+  product: HttpTypes.StoreProduct
+  pot?: Record<string, any>
+}
+
+const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
+  // Build tree specs from native Medusa fields
+  const treeSpecs: Record<string, string> = {}
+
+  // Dimensions in compact format: LxWxH
+  if (product.length || product.width || product.height) {
+    const parts = []
+    if (product.length) parts.push(`${product.length}L`)
+    if (product.width) parts.push(`${product.width}W`)
+    if (product.height) parts.push(`${product.height}H`)
+    treeSpecs["Dimensions (approx.)"] = parts.join(" x ")
   }
+
+  if (product.weight) {
+    treeSpecs["Weight"] = `${product.weight} g`
+  }
+  if (product.material) {
+    treeSpecs["Material"] = product.material
+  }
+  if (product.origin_country) {
+    treeSpecs["Country of origin"] = product.origin_country
+  }
+
+  // Build pot specs from metadata.pot
+  const potSpecs: Record<string, string> = {}
+  if (pot) {
+    if (pot.width && pot.depth && pot.height) {
+      const unit = pot.unit || "cm"
+      potSpecs["Dimensions"] = `${pot.width} x ${pot.depth} x ${pot.height}H ${unit}`
+    }
+    if (pot.material) {
+      potSpecs["Material"] = pot.material
+    }
+    if (pot.finish) {
+      potSpecs["Finish"] = pot.finish
+    }
+    if (pot.care) {
+      potSpecs["Care"] = pot.care
+    }
+  }
+
+  const hasTreeSpecs = Object.keys(treeSpecs).length > 0
+  const hasPotSpecs = Object.keys(potSpecs).length > 0
 
   return (
     <div className="text-small-regular py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-        {Object.entries(combinedSpecs).map(([key, value], i) => (
-          <div key={i} className="flex flex-col gap-y-1">
-            <span className="font-semibold text-ui-fg-base">{key}</span>
-            <p className="text-ui-fg-subtle">{value}</p>
+      {/* Tree specifications */}
+      {hasTreeSpecs && (
+        <div>
+          {hasPotSpecs && (
+            <span className="font-semibold text-ui-fg-base text-xs uppercase tracking-wider mb-4 block">
+              Tree (including pot)
+            </span>
+          )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+            {Object.entries(treeSpecs).map(([key, value], i) => (
+              <div key={i} className="flex flex-col gap-y-1">
+                <span className="font-semibold text-ui-fg-base">{key}</span>
+                <p className="text-ui-fg-subtle">{value}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
+
+      {/* Pot specifications */}
+      {hasPotSpecs && (
+        <div className={hasTreeSpecs ? "mt-8 pt-8 border-t border-ui-border-base" : ""}>
+          <span className="font-semibold text-ui-fg-base text-xs uppercase tracking-wider mb-4 block">
+            Pot
+          </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+            {Object.entries(potSpecs).map(([key, value], i) => (
+              <div key={i} className="flex flex-col gap-y-1">
+                <span className="font-semibold text-ui-fg-base">{key}</span>
+                <p className="text-ui-fg-subtle">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {!hasTreeSpecs && !hasPotSpecs && (
+        <p className="text-ui-fg-muted">No specifications available.</p>
+      )}
     </div>
   )
 }

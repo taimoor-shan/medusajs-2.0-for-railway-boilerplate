@@ -68,7 +68,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
       {/* Thumbnails */}
       {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-5 gap-4 absolute z-[9999] bottom-0 w-full">
           {images.map((image, index) => {
             return (
               <button
