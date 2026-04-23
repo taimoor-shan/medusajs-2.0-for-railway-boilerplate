@@ -10,6 +10,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import NavCountrySelect from "@modules/layout/components/nav-country-select"
+import NavLanguageSelect from "@modules/layout/components/nav-language-select"
 
 export default async function Nav() {
   const [regions, locales, currentLocale, store] = await Promise.all([
@@ -21,7 +22,7 @@ export default async function Nav() {
   const storeName = store?.name || "Luxe Linen"
 
   return (
-    <div className="sticky top-0 inset-x-0 z-50 group">
+    <div className="sticky top-0 inset-x-0 z-[100] group">
       <header className="relative h-16 mx-auto border-b duration-200 bg-white border-ui-border-base">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex h-full w-full items-center justify-between gap-x-4 text-small-regular small:grid small:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           <div className="flex h-full min-w-0 items-center gap-x-4 justify-self-start">
@@ -62,6 +63,13 @@ export default async function Nav() {
               >
                 Account
               </LocalizedClientLink>
+              <span
+                aria-hidden="true"
+                className="h-4 w-px bg-ui-border-base"
+              />
+              <div className="flex items-center">
+                <NavLanguageSelect locales={locales} currentLocale={currentLocale} />
+              </div>
               <span
                 aria-hidden="true"
                 className="h-4 w-px bg-ui-border-base"

@@ -111,7 +111,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const KeyFeaturesTab = ({ features }: { features: string[] }) => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular py-4">
       <ul className="list-disc pl-4 flex flex-col gap-y-2">
         {features.map((feature, i) => (
           <li key={i} className="text-ui-fg-subtle">
@@ -125,7 +125,7 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
 
 const CareTab = ({ instructions }: { instructions: string }) => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular py-4">
       <p className="text-ui-fg-subtle leading-loose">{instructions}</p>
     </div>
   )
@@ -133,7 +133,7 @@ const CareTab = ({ instructions }: { instructions: string }) => {
 
 const PackagingTab = ({ info }: { info: string }) => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular py-4">
       <p className="text-ui-fg-subtle leading-loose">{info}</p>
     </div>
   )
@@ -189,7 +189,7 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
   const hasPotSpecs = Object.keys(potSpecs).length > 0
 
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular py-4">
       {/* Tree specifications */}
       {hasTreeSpecs && (
         <div>
@@ -235,7 +235,7 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
 
 const ShippingInfoTab = () => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-small-regular py-4">
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
           <FastDelivery />

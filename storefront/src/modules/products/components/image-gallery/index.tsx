@@ -24,14 +24,49 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   const activeImage = images[activeIndex]
   // Determine if we should show the "second image on hover" effect
   // Valid if we are on the first image and a second image exists
-  const canShowAlternateOnHover = activeIndex === 0 && images.length > 1
+  // const canShowAlternateOnHover = activeIndex === 0 && images.length > 1
+  const canShowAlternateOnHover = false
   const hoverImage = canShowAlternateOnHover ? images[1] : null
 
   return (
-    <div className="flex flex-col gap-y-4 relative w-full">
+    <div className="flex gap-x-4 relative w-full">
+       {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="flex flex-col gap-y-4">
+          {images.map((image, index) => {
+            return (
+              <button
+                key={image.id}
+                className={`relative aspect-square w-full overflow-hidden rounded-md border-2 transition-all ${
+                  index === activeIndex
+                    ? "border-ui-border-interactive"
+                    : "border-transparent hover:border-ui-border-strong"
+                }`}
+                onClick={() => setActiveIndex(index)}
+                style={{
+                  width: "100px",
+                  height: "100px",
+                }}
+              >
+                {!!image.url && (
+                  <Image
+                    src={image.url}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    sizes="100px"
+                    style={{
+                      objectFit: "cover",
+                    }}
+                  />
+                )}
+              </button>
+            )
+          })}
+        </div>
+      )}
       {/* Main Image */}
       <Container
-        className="relative aspect-[4/5] w-full overflow-hidden bg-ui-bg-subtle group cursor-crosshair"
+        className="relative aspect-[4/5] w-full overflow-hidden bg-ui-bg-subtle group"
         id={activeImage.id}
       >
         {!!activeImage.url && (
@@ -65,37 +100,6 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           />
         )}
       </Container>
-
-      {/* Thumbnails */}
-      {images.length > 1 && (
-        <div className="grid grid-cols-5 gap-4 absolute z-[9999] bottom-0 w-full">
-          {images.map((image, index) => {
-            return (
-              <button
-                key={image.id}
-                className={`relative aspect-square w-full overflow-hidden rounded-md border-2 transition-all ${
-                  index === activeIndex
-                    ? "border-ui-border-interactive"
-                    : "border-transparent hover:border-ui-border-strong"
-                }`}
-                onClick={() => setActiveIndex(index)}
-              >
-                {!!image.url && (
-                  <Image
-                    src={image.url}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    sizes="100px"
-                    style={{
-                      objectFit: "cover",
-                    }}
-                  />
-                )}
-              </button>
-            )
-          })}
-        </div>
-      )}
     </div>
   )
 }

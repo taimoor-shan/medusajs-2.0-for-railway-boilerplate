@@ -113,6 +113,12 @@ module.exports = defineConfig({
         ],
       },
     },
+    {
+      resolve: "@medusajs/medusa/translation",
+    },
+    {
+      resolve: "@medusajs/medusa/product",
+    },
 
   ],
   admin: {
@@ -132,5 +138,8 @@ module.exports = defineConfig({
         },
       }
     },
+  },
+  featureFlags: {
+    translation: true,
   },
 })

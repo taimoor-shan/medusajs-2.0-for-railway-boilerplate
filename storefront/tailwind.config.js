@@ -70,11 +70,10 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Poppins",
+          "Google Sans",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
-          "Roboto",
           "Helvetica Neue",
           "Ubuntu",
           "sans-serif",

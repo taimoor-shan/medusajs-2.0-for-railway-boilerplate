@@ -40,6 +40,16 @@ type LanguageSelectProps = {
   toggleState: StateType
   locales: Locale[]
   currentLocale: string | null
+  /**
+   * Optional label shown before the selected language name.
+   * Pass `null` to hide (useful in tight UI like the top nav).
+   */
+  label?: string | null
+  /**
+   * Optional class overrides for reusing the component in different layouts.
+   */
+  buttonClassName?: string
+  dropdownWrapperClassName?: string
 }
 
 /**
@@ -72,6 +82,9 @@ const LanguageSelect = ({
   toggleState,
   locales,
   currentLocale,
+  label = "Language:",
+  buttonClassName,
+  dropdownWrapperClassName,
 }: LanguageSelectProps) => {
   const [current, setCurrent] = useState<LanguageOption | undefined>(undefined)
   const [isPending, startTransition] = useTransition()
@@ -126,9 +139,9 @@ const LanguageSelect = ({
         }
         disabled={isPending}
       >
-        <ListboxButton className="py-1 w-full">
+        <ListboxButton className={["py-1 w-full", buttonClassName].filter(Boolean).join(" ")}>
           <div className="txt-compact-small flex items-start gap-x-2">
-            <span>Language:</span>
+            {label !== null ? <span>{label}</span> : null}
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
                 {current.countryCode && (
@@ -147,7 +160,7 @@ const LanguageSelect = ({
             )}
           </div>
         </ListboxButton>
-        <div className="flex relative w-full min-w-[320px]">
+        <div className={["relative w-full", dropdownWrapperClassName].filter(Boolean).join(" ")}>
           <Transition
             show={state}
             as={Fragment}
@@ -156,7 +169,7 @@ const LanguageSelect = ({
             leaveTo="opacity-0"
           >
             <ListboxOptions
-              className="absolute -bottom-[calc(100%-36px)] left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full"
+              className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full min-w-[320px]"
               static
             >
               {options.map((o) => (
