@@ -28,14 +28,14 @@ export default async function Nav() {
           <div className="flex h-full min-w-0 items-center gap-x-4 justify-self-start">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus truncate uppercase hover:text-ui-fg-base"
+              className="txt-compact-xlarge-plus truncate text-ui-fg-base"
               data-testid="nav-store-link"
             >
               {storeName}
             </LocalizedClientLink>
           </div>
 
-          <div className="hidden h-full items-center justify-self-center small:flex">
+          <div className="hidden h-full items-center justify-self-center small:flex opacity-0">
             <div className="flex items-center gap-x-8 whitespace-nowrap">
               <LocalizedClientLink
                 className="hover:text-ui-fg-base"
