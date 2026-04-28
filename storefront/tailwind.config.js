@@ -78,8 +78,8 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: ["Marcellus", "serif"],
-        display: ["Marcellus", "serif"],
+        serif: ["Gelasio", "serif"],
+        display: ["Gelasio", "serif"],
       },
       keyframes: {
         ring: {

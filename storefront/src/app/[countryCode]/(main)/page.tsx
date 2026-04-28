@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import AllProducts from "@modules/home/components/all-products"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import About from "@modules/home/components/about"
@@ -44,7 +45,8 @@ export default async function Home(props: {
       <About content={homePage?.content} />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
+          <AllProducts region={region} />
+          {/* <FeaturedProducts collections={collections} region={region} /> */}
         </ul>
       </div>
     </>

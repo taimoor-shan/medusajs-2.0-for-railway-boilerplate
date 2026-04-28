@@ -3,6 +3,7 @@
 import { Button, Heading } from "@medusajs/ui"
 import { ChevronDown } from "lucide-react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import Image from "next/image"
 
 type HeroProps = {
   page?: {
@@ -13,7 +14,7 @@ type HeroProps = {
 }
 
 const Hero = ({ page }: HeroProps) => {
-  const title = page?.title || "Soft essentials for everyday living"
+  const title = page?.title || "Botanic Minimalism"
   const excerpt = page?.excerpt || "Handcrafted botanical pieces designed for refined interiors, bringing timeless greenery to homes, hotels, and architectural spaces across Europe."
 
   const backgroundImage = page?.featured_image
@@ -27,6 +28,13 @@ const Hero = ({ page }: HeroProps) => {
     >
       {/* <div className="absolute inset-0 z-0 bg-overlay" /> */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6 max-w-4xl mx-auto">
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={300}
+          height={300}
+          className="object-contain mix-blend-multiply drop-shadow-md"
+        />
         <span>
           <Heading
             level="h1"

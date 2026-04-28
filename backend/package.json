@@ -39,6 +39,7 @@
     "@tiptap/react": "^2.11.7",
     "@tiptap/starter-kit": "^2.11.7",
     "awilix": "^8.0.1",
+    "google-translate-api-x": "^10.7.2",
     "minio": "^8.0.6",
     "pg": "^8.13.0",
     "ulid": "^2.3.0"

@@ -4,8 +4,8 @@
 
 :root {
   /* Brand */
-  --color-primary: #b6895b;
-  --color-primary-hover: #9c734c;
+  --color-primary: #ba594d;
+  --color-primary-hover: #a64739;
 
   /* Background */
   --color-bg-base: #ffffff;
@@ -81,18 +81,20 @@
   h4,
   h5,
   h6 {
-    font-family: "Marcellus", serif;
-    font-weight: 400;
+    @apply font-serif;
+    font-weight: 500;
     font-style: normal;
     color: var(--color-text-primary);
+    font-optical-sizing: auto;
   }
 
   .h1-core,
   .h2-core,
   .h3-core {
-    font-family: "Marcellus", serif;
-    font-weight: 400;
+    @apply font-serif;
+    font-weight: 500;
     font-style: normal;
+    font-optical-sizing: auto;
   }
 }
 
