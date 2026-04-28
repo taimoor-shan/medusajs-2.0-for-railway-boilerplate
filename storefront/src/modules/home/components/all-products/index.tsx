@@ -14,7 +14,7 @@ export default async function AllProducts({
   } = await listProducts({
     regionId: region.id,
     queryParams: {
-      fields: "*variants.calculated_price",
+      fields: "*variants.calculated_price,*variants.prices",
       limit: 12,
     },
   })

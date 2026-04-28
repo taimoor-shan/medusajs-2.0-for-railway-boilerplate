@@ -7,22 +7,43 @@ export const getPricesForVariant = (variant: any) => {
     return null
   }
 
+  const calculatedAmount = variant.calculated_price.calculated_amount
+  const currencyCode = variant.calculated_price.currency_code
+  let originalAmount = variant.calculated_price.original_amount
+
+  // For override price lists, original_amount equals calculated_amount.
+  // We need to find the base (non-price-list) price from the variant's prices array.
+  const isOverride =
+    variant.calculated_price.is_calculated_price_price_list &&
+    originalAmount === calculatedAmount
+
+  if (isOverride && variant.prices?.length) {
+    const basePrice = variant.prices.find(
+      (p: any) =>
+        !p.price_list_id &&
+        p.currency_code === currencyCode
+    )
+    if (basePrice) {
+      originalAmount = basePrice.amount
+    }
+  }
+
   return {
-    calculated_price_number: variant.calculated_price.calculated_amount,
+    calculated_price_number: calculatedAmount,
     calculated_price: convertToLocale({
-      amount: variant.calculated_price.calculated_amount,
-      currency_code: variant.calculated_price.currency_code,
+      amount: calculatedAmount,
+      currency_code: currencyCode,
     }),
-    original_price_number: variant.calculated_price.original_amount,
+    original_price_number: originalAmount,
     original_price: convertToLocale({
-      amount: variant.calculated_price.original_amount,
-      currency_code: variant.calculated_price.currency_code,
+      amount: originalAmount,
+      currency_code: currencyCode,
     }),
-    currency_code: variant.calculated_price.currency_code,
+    currency_code: currencyCode,
     price_type: variant.calculated_price.calculated_price.price_list_type,
     percentage_diff: getPercentageDiff(
-      variant.calculated_price.original_amount,
-      variant.calculated_price.calculated_amount
+      originalAmount,
+      calculatedAmount
     ),
   }
 }

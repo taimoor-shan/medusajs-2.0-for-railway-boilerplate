@@ -6,9 +6,11 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
     return null
   }
 
+  const isDiscounted = price.calculated_price_number < price.original_price_number
+
   return (
     <>
-      {price.price_type === "sale" && (
+      {isDiscounted && (
         <Text
           className="line-through text-ui-fg-muted"
           data-testid="original-price"
@@ -18,7 +20,7 @@ export default async function PreviewPrice({ price }: { price: VariantPrice }) {
       )}
       <Text
         className={clx("text-primary", {
-          "text-ui-fg-interactive": price.price_type === "sale",
+          "text-ui-fg-interactive": isDiscounted,
         })}
         data-testid="price"
       >
