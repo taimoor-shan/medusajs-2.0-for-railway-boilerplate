@@ -1,10 +1,6 @@
 "use client"
 
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
-
-import Accordion from "./accordion"
+import { useState } from "react"
 import { HttpTypes } from "@medusajs/types"
 
 type ProductTabsProps = {
@@ -79,40 +75,38 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     })
   }
 
-  if (packagingInfo) {
-    tabs.push({
-      label: "Packaging & Delivery",
-      component: <PackagingTab info={packagingInfo} />,
-    })
-  }
+  const [activeTab, setActiveTab] = useState(0)
 
-  tabs.push({
-    label: "Shipping & Returns",
-    component: <ShippingInfoTab />,
-  })
+  if (tabs.length === 0) return null
 
   return (
     <div className="w-full">
-      <Accordion type="multiple">
+      <div className="flex border-b border-ui-border-base gap-x-6 overflow-x-auto no-scrollbar">
         {tabs.map((tab, i) => (
-           <Accordion.Item
+          <button
             key={i}
-            title={tab.label}
-            headingSize="medium"
-            value={tab.label}
+            onClick={() => setActiveTab(i)}
+            className={`py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
+              activeTab === i
+                ? "border-primary text-ui-fg-base"
+                : "border-transparent text-ui-fg-subtle hover:text-ui-fg-base"
+            }`}
           >
-            {tab.component}
-          </Accordion.Item>
+            {tab.label}
+          </button>
         ))}
-      </Accordion>
+      </div>
+      <div className="pt-4">
+        {tabs[activeTab].component}
+      </div>
     </div>
   )
 }
 
 const KeyFeaturesTab = ({ features }: { features: string[] }) => {
   return (
-    <div className="text-small-regular py-4">
-      <ul className="list-disc pl-4 flex flex-col gap-y-2">
+    <div className="text-sm py-4">
+      <ul className="list-disc pl-4 flex flex-col gap-y-2 marker:text-primary">
         {features.map((feature, i) => (
           <li key={i} className="text-ui-fg-subtle">
             {feature}
@@ -125,19 +119,13 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
 
 const CareTab = ({ instructions }: { instructions: string }) => {
   return (
-    <div className="text-small-regular py-4">
+    <div className="text-sm py-4">
       <p className="text-ui-fg-subtle leading-loose">{instructions}</p>
     </div>
   )
 }
 
-const PackagingTab = ({ info }: { info: string }) => {
-  return (
-    <div className="text-small-regular py-4">
-      <p className="text-ui-fg-subtle leading-loose">{info}</p>
-    </div>
-  )
-}
+
 
 type SpecificationsTabProps = {
   product: HttpTypes.StoreProduct
@@ -148,13 +136,14 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
   // Build tree specs from native Medusa fields
   const treeSpecs: Record<string, string> = {}
 
-  // Dimensions in compact format: LxWxH
-  if (product.length || product.width || product.height) {
-    const parts = []
-    if (product.length) parts.push(`${product.length}L`)
-    if (product.width) parts.push(`${product.width}W`)
-    if (product.height) parts.push(`${product.height}H`)
-    treeSpecs["Dimensions (approx.)"] = parts.join(" x ")
+  if (product.height) {
+    treeSpecs["Height"] = `${product.height}`
+  }
+  if (product.width) {
+    treeSpecs["Width"] = `${product.width}`
+  }
+  if (product.length) {
+    treeSpecs["Depth"] = `${product.length}`
   }
 
   if (product.weight) {
@@ -170,9 +159,18 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
   // Build pot specs from metadata.pot
   const potSpecs: Record<string, string> = {}
   if (pot) {
-    if (pot.width && pot.depth && pot.height) {
-      const unit = pot.unit || "cm"
-      potSpecs["Dimensions"] = `${pot.width} x ${pot.depth} x ${pot.height}H ${unit}`
+    const unit = pot.unit || "cm"
+    
+    // Combine width and depth into Size if both exist
+    if (pot.width && pot.depth) {
+      potSpecs["Size"] = `${pot.width} ${unit} × ${pot.depth} ${unit}`
+    } else {
+      if (pot.width) potSpecs["Width"] = `${pot.width} ${unit}`
+      if (pot.depth) potSpecs["Depth"] = `${pot.depth} ${unit}`
+    }
+
+    if (pot.height) {
+      potSpecs["Height"] = `${pot.height} ${unit}`
     }
     if (pot.material) {
       potSpecs["Material"] = pot.material
@@ -189,16 +187,16 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
   const hasPotSpecs = Object.keys(potSpecs).length > 0
 
   return (
-    <div className="text-small-regular py-4">
+    <div className="text-base py-4">
       {/* Tree specifications */}
       {hasTreeSpecs && (
         <div>
           {hasPotSpecs && (
-            <span className="font-semibold text-ui-fg-base text-xs uppercase tracking-wider mb-4 block">
+            <span className="font-semibold text-primary text-base mb-4 block">
               Tree (including pot)
             </span>
           )}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
             {Object.entries(treeSpecs).map(([key, value], i) => (
               <div key={i} className="flex flex-col gap-y-1">
                 <span className="font-semibold text-ui-fg-base">{key}</span>
@@ -212,10 +210,10 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
       {/* Pot specifications */}
       {hasPotSpecs && (
         <div className={hasTreeSpecs ? "mt-8 pt-8 border-t border-ui-border-base" : ""}>
-          <span className="font-semibold text-ui-fg-base text-xs uppercase tracking-wider mb-4 block">
-            Pot
+          <span className="font-semibold text-primary text-base mb-4 block">
+            {pot.size ? `Pot Only (${pot.size})` : "Pot Only"}
           </span>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
             {Object.entries(potSpecs).map(([key, value], i) => (
               <div key={i} className="flex flex-col gap-y-1">
                 <span className="font-semibold text-ui-fg-base">{key}</span>
@@ -229,46 +227,6 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
       {!hasTreeSpecs && !hasPotSpecs && (
         <p className="text-ui-fg-muted">No specifications available.</p>
       )}
-    </div>
-  )
-}
-
-const ShippingInfoTab = () => {
-  return (
-    <div className="text-small-regular py-4">
-      <div className="grid grid-cols-1 gap-y-8">
-        <div className="flex items-start gap-x-2">
-          <FastDelivery />
-          <div>
-            <span className="font-semibold">Fast delivery</span>
-            <p className="max-w-sm text-ui-fg-subtle mt-1">
-              Your package will arrive in 3-5 business days at your pick up
-              location or in the comfort of your home.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
-          <div>
-            <span className="font-semibold">Simple exchanges</span>
-            <p className="max-w-sm text-ui-fg-subtle mt-1">
-              Is the fit not quite right? No worries - we&apos;ll exchange your
-              product for a new one.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Back />
-          <div>
-            <span className="font-semibold">Easy returns</span>
-            <p className="max-w-sm text-ui-fg-subtle mt-1">
-              Just return your product and we&apos;ll refund your money. No
-              questions asked – we&apos;ll do our best to make sure your return
-              is hassle-free.
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

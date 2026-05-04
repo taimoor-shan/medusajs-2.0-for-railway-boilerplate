@@ -35,6 +35,12 @@
     "@mikro-orm/migrations": "6.6.12",
     "@mikro-orm/postgresql": "6.6.12",
     "@tiptap/core": "^2.11.7",
+    "@tiptap/extension-link": "^2.11.7",
+    "@tiptap/extension-table": "^2.11.7",
+    "@tiptap/extension-table-cell": "^2.11.7",
+    "@tiptap/extension-table-header": "^2.11.7",
+    "@tiptap/extension-table-row": "^2.11.7",
+    "@tiptap/extension-underline": "^2.11.7",
     "@tiptap/pm": "^2.11.7",
     "@tiptap/react": "^2.11.7",
     "@tiptap/starter-kit": "^2.11.7",
@@ -42,6 +48,7 @@
     "google-translate-api-x": "^10.7.2",
     "minio": "^8.0.6",
     "pg": "^8.13.0",
+    "resend": "^6.12.2",
     "ulid": "^2.3.0"
   },
   "devDependencies": {

@@ -32,16 +32,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container flex flex-col small:flex-row small:items-start py-6 gap-y-8 small:gap-x-32 relative"
+        className="content-container flex flex-col small:flex-row small:items-start py-6 gap-y-8 small:gap-x-20 relative"
         data-testid="product-container"
       >
         {/* Left Column - Image Gallery */}
-        <div className="block w-full small:w-[60%] relative">
+        <div className="block w-full small:w-[50%] relative">
           <ImageGallery images={images} />
         </div>
 
         {/* Right Column - Product Details sticky wrapper */}
-        <div className="flex flex-col small:sticky small:top-24 w-full small:w-[40%] py-8 gap-y-12">
+        <div className="flex flex-col small:sticky small:top-24 w-full small:w-[50%] py-8 gap-y-12">
           
           <ProductInfo product={product} />
           

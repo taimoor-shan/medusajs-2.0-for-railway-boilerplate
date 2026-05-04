@@ -70,7 +70,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Google Sans",
+          "Poppins",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -78,8 +78,8 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: ["Gelasio", "serif"],
-        display: ["Gelasio", "serif"],
+        serif: ["Marcellus", "serif"],
+        display: ["Marcellus", "serif"],
       },
       keyframes: {
         ring: {

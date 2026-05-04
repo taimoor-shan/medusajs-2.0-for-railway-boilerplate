@@ -38,7 +38,7 @@ const Hero = ({ page }: HeroProps) => {
         <span>
           <Heading
             level="h1"
-            className="text-5xl text-ui-fg-base text-on-primary mb-5 font-display leading-tight"
+            className="lg:text-5xl text-3xl text-ui-fg-base text-on-primary mb-5 font-display leading-tight"
           >
             {title}
           </Heading>

@@ -22,6 +22,37 @@ const StripeWrapper: React.FC<StripeWrapperProps> = ({
 }) => {
   const options: StripeElementsOptions = {
     clientSecret: paymentSession!.data?.client_secret as string | undefined,
+    appearance: {
+      theme: "stripe",
+      variables: {
+        colorPrimary: "#1a1a2e",
+        colorBackground: "#ffffff",
+        colorText: "#30313d",
+        colorDanger: "#df1b41",
+        fontFamily: "Inter, system-ui, sans-serif",
+        spacingUnit: "4px",
+        borderRadius: "6px",
+      },
+      rules: {
+        ".Input": {
+          border: "1px solid #e5e7eb",
+          boxShadow: "none",
+          transition: "border-color 0.15s ease, box-shadow 0.15s ease",
+        },
+        ".Input:hover": {
+          borderColor: "#d1d5db",
+        },
+        ".Input:focus": {
+          borderColor: "#1a1a2e",
+          boxShadow: "0 0 0 1px #1a1a2e",
+        },
+        ".Label": {
+          fontWeight: "500",
+          fontSize: "14px",
+          marginBottom: "6px",
+        },
+      },
+    },
   }
 
   if (!stripeKey) {

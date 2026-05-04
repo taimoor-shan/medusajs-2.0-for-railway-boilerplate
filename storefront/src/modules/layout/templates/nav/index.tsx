@@ -28,28 +28,42 @@ export default async function Nav() {
           <div className="flex h-full min-w-0 items-center gap-x-4 justify-self-start">
             <LocalizedClientLink
               href="/"
-              className="txt-compact-xlarge-plus truncate text-ui-fg-base"
+              className="text-3xl font-serif text-ui-fg-base hover:text-ui-fg-base"
               data-testid="nav-store-link"
             >
               {storeName}
             </LocalizedClientLink>
           </div>
 
-          <div className="hidden h-full items-center justify-self-center small:flex opacity-0">
+          <div className="hidden h-full items-center justify-self-center small:flex">
             <div className="flex items-center gap-x-8 whitespace-nowrap">
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="hover:text-primary text-sm text-black uppercase"
                 href="/"
                 data-testid="nav-home-link"
               >
                 Home
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-ui-fg-base"
+                className="hover:text-primary text-sm text-black uppercase"
                 href="/store"
                 data-testid="nav-store-link-center"
               >
                 Store
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="hover:text-primary text-sm text-black uppercase"
+                href="/about"
+                data-testid="nav-about-link"
+              >
+                About
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="hover:text-primary text-sm text-black uppercase"
+                href="/contact"
+                data-testid="nav-contact-link"
+              >
+                Contact
               </LocalizedClientLink>
             </div>
           </div>
@@ -67,13 +81,13 @@ export default async function Nav() {
                 aria-hidden="true"
                 className="h-4 w-px bg-ui-border-base"
               />
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <NavLanguageSelect locales={locales} currentLocale={currentLocale} />
-              </div>
-              <span
+              </div> */}
+              {/* <span
                 aria-hidden="true"
                 className="h-4 w-px bg-ui-border-base"
-              />
+              /> */}
               <div className="flex items-center">
                 <NavCountrySelect regions={regions as any} />
               </div>

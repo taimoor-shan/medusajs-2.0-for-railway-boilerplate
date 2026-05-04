@@ -108,6 +108,7 @@ module.exports = defineConfig({
             id: "stripe",
             options: {
               apiKey: process.env.STRIPE_API_KEY,
+              automatic_payment_methods: true,
             },
           },
         ],

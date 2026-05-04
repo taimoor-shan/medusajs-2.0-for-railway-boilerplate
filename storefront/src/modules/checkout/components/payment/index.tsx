@@ -11,7 +11,9 @@ import PaymentContainer, {
 } from "@modules/checkout/components/payment-container"
 import Divider from "@modules/common/components/divider"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
+import { StripeContext } from "../payment-wrapper/stripe-wrapper"
+import ExpressCheckout from "@modules/checkout/components/express-checkout"
 
 const Payment = ({
   cart,
@@ -37,6 +39,7 @@ const Payment = ({
   const pathname = usePathname()
 
   const isOpen = searchParams.get("step") === "payment"
+  const stripeReady = useContext(StripeContext)
 
   const setPaymentMethod = async (method: string) => {
     setError(null)
@@ -106,34 +109,37 @@ const Payment = ({
 
   return (
     <div className="bg-white">
-      <div className="flex flex-row items-center justify-between mb-6">
-        <Heading
-          level="h2"
-          className={clx(
-            "flex flex-row text-3xl-regular gap-x-2 items-baseline",
-            {
-              "opacity-50 pointer-events-none select-none":
-                !isOpen && !paymentReady,
-            }
+      <div className="flex flex-col mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-y-4">
+          <Heading
+            level="h2"
+            className={clx(
+              "flex flex-row text-3xl-regular gap-x-2 items-baseline",
+              {
+                "opacity-50 pointer-events-none select-none":
+                  !isOpen && !paymentReady,
+              }
+            )}
+          >
+            Payment
+            {!isOpen && paymentReady && <CheckCircleSolid />}
+          </Heading>
+          {!isOpen && paymentReady && (
+            <Text>
+              <button
+                onClick={handleEdit}
+                className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+                data-testid="edit-payment-button"
+              >
+                Edit
+              </button>
+            </Text>
           )}
-        >
-          Payment
-          {!isOpen && paymentReady && <CheckCircleSolid />}
-        </Heading>
-        {!isOpen && paymentReady && (
-          <Text>
-            <button
-              onClick={handleEdit}
-              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
-              data-testid="edit-payment-button"
-            >
-              Edit
-            </button>
-          </Text>
-        )}
+        </div>
       </div>
       <div>
         <div className={isOpen ? "block" : "hidden"}>
+          {stripeReady && <ExpressCheckout cart={cart} />}
           {!paidByGiftcard && availablePaymentMethods?.length && (
             <>
               <RadioGroup

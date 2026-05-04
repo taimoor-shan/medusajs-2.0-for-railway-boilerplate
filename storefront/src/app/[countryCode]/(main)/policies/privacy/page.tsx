@@ -1,29 +1,48 @@
 import { Metadata } from "next"
+import { retrievePageBySlug } from "@lib/data/pages"
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Luxe Linen",
+const SLUG = "privacy-policy"
+const FALLBACK_TITLE = "Privacy Policy"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await retrievePageBySlug(SLUG)
+  return {
+    title: page?.seo_title || page?.title || `${FALLBACK_TITLE} | Infinytree`,
+    description:
+      page?.seo_description || page?.excerpt || "How we collect, use and protect your data.",
+  }
 }
 
-export default function PrivacyPolicyPage() {
+export default async function PrivacyPolicyPage() {
+  const page = await retrievePageBySlug(SLUG)
+
   return (
     <div className="content-container py-16">
-      <h1 className="text-2xl font-semibold text-ui-fg-base">
-        Privacy Policy
-      </h1>
-      <div className="mt-6 space-y-4 text-ui-fg-subtle">
-        <p>
-          This Privacy Policy explains how Luxe Linen collects, uses, and
-          protects your information when you use our website and services.
-        </p>
-        <p>
-          Please update this page with your exact data collection practices,
-          analytics tools, payment providers, and customer support processes.
-        </p>
-        <p>
-          For privacy-related requests, contact us at:
-          {" "}
-          <span className="text-ui-fg-base">[add email]</span>
-        </p>
+      <div className="max-w-4xl mx-auto">
+        {page?.content ? (
+          <div
+            className="prose max-w-none text-ui-fg-subtle"
+            dangerouslySetInnerHTML={{ __html: page.content }}
+          />
+        ) : (
+          <>
+            <h1 className="text-2xl font-semibold text-ui-fg-base">
+              {FALLBACK_TITLE}
+            </h1>
+            <div className="mt-6 space-y-4 text-ui-fg-subtle">
+              <p>This page is being updated. Please check back soon.</p>
+              <p>
+                For privacy-related requests, contact us at:{" "}
+                <a
+                  href="mailto:info@infinytree.com"
+                  className="text-ui-fg-base underline"
+                >
+                  info@infinytree.com
+                </a>
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

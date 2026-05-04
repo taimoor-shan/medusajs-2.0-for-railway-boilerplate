@@ -21,7 +21,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       
         <Heading
           level="h2"
-          className="text-3xl leading-10 text-ui-fg-base"
+          className="text-3xl leading-10 text-ui-fg-base font-serif font-thin"
           data-testid="product-title"
         >
           {product.title}
@@ -43,12 +43,12 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         >
           {product.description}
         </Text>
-
+{/* 
         {(product.metadata as Record<string, any>)?.uniqueness_note && (
           <Text className="text-small-regular text-ui-fg-muted italic mt-4">
             {(product.metadata as Record<string, any>).uniqueness_note}
           </Text>
-        )}
+        )} */}
 
         {product.tags && product.tags.length > 0 && (
           <div className="mt-6">

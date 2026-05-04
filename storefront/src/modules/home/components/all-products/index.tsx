@@ -28,7 +28,7 @@ export default async function AllProducts({
       <div className="flex justify-center mb-8 prose">
         <h2 className="text-primary">All Products</h2>
       </div>
-      <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-6 gap-y-12">
+      <ul className="grid small:grid-cols-4 gap-x-6 gap-y-12">
         {pricedProducts &&
           pricedProducts.map((product) => (
             <li key={product.id}>

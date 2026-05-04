@@ -4,6 +4,7 @@ import { Heading, Text, clx } from "@medusajs/ui"
 
 import PaymentButton from "../payment-button"
 import { useSearchParams } from "next/navigation"
+import { CardBrandLogos } from "@modules/checkout/components/card-brand-logos"
 
 const Review = ({ cart }: { cart: any }) => {
   const searchParams = useSearchParams()
@@ -45,7 +46,12 @@ const Review = ({ cart }: { cart: any }) => {
               </Text>
             </div>
           </div>
-          <PaymentButton cart={cart} data-testid="submit-order-button" />
+          <div className="flex flex-col gap-y-4">
+            <PaymentButton cart={cart} data-testid="submit-order-button" />
+            <div className="flex flex-col items-center justify-center gap-y-3 mt-2">
+              <CardBrandLogos showStripe />
+            </div>
+          </div>
         </>
       )}
     </div>

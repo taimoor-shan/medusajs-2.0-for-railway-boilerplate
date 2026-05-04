@@ -258,4 +258,24 @@
   .prose hr {
     @apply my-8 border-ui-border-base;
   }
+
+  .prose table {
+    @apply w-full border-collapse my-6 text-sm;
+  }
+
+  .prose thead th {
+    @apply text-left font-semibold text-ui-fg-base py-3 px-4 border-b-2 border-ui-border-base bg-ui-bg-subtle;
+  }
+
+  .prose tbody td {
+    @apply py-3 px-4 border-b border-ui-border-base;
+  }
+
+  .prose strong {
+    @apply font-semibold text-ui-fg-base;
+  }
+
+  .prose em {
+    @apply italic;
+  }
 }
