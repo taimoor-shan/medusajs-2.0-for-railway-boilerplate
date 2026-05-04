@@ -8,6 +8,7 @@ import { listCollections } from "@lib/data/collections"
 import { retrievePageBySlug } from "@lib/data/pages"
 import { getRegion } from "@lib/data/regions"
 import { retrieveStore } from "@lib/data/store"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 export async function generateMetadata(): Promise<Metadata> {
   const store = await retrieveStore()
@@ -21,9 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home(props: {
   params: Promise<{ countryCode: string }>
+  searchParams: Promise<{
+    sortBy?: SortOptions
+    page?: string
+  }>
 }) {
   const params = await props.params
-
+  const searchParams = await props.searchParams
+  const { sortBy, page } = searchParams
   const { countryCode } = params
 
   const region = await getRegion(countryCode)
@@ -45,7 +51,7 @@ export default async function Home(props: {
       <About content={homePage?.content} />
       <div className="py-12">
         <ul className="flex flex-col gap-x-6">
-          <AllProducts region={region} />
+          <AllProducts sortBy={sortBy} page={page} countryCode={countryCode} />
           {/* <FeaturedProducts collections={collections} region={region} /> */}
         </ul>
       </div>

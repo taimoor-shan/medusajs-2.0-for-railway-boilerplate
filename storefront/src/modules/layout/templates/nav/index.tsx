@@ -28,9 +28,10 @@ export default async function Nav() {
           <div className="flex h-full min-w-0 items-center gap-x-4 justify-self-start">
             <LocalizedClientLink
               href="/"
-              className="text-3xl font-serif text-ui-fg-base hover:text-ui-fg-base"
+              className="flex items-center gap-3 text-3xl font-serif text-black hover:text-black"
               data-testid="nav-store-link"
             >
+              <img src="/logo-mark.png" alt="Logo" className="w-8 h-8 object-contain" />
               {storeName}
             </LocalizedClientLink>
           </div>

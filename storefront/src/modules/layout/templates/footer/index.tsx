@@ -18,8 +18,9 @@ export default async function Footer() {
     <footer className="border-t border-ui-border-base w-full bg-[#f6efe7] pb-8">
       <div className="pt-20 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-x-8 lg:pt-36 max-w-[1440px] mx-auto content-container">
         <div className="lg:mt-0 lg:col-span-4 lg:row-span-1">
-          <LocalizedClientLink href="/" className="text-3xl font-serif text-ui-fg-base hover:text-ui-fg-base inline-block">
-            {storeName}
+          <LocalizedClientLink href="/" className="inline-flex items-center gap-3 text-3xl font-serif text-black hover:text-black">
+            <img src="/logo-mark.png" alt="Logo" className="w-8 h-8 object-contain" />
+            <span>{storeName}</span>
           </LocalizedClientLink>
           <p className="text-base mb-2 mt-4 text-ui-fg-subtle">Stay updated on the latest from {storeName}</p>
           <NewsletterForm />

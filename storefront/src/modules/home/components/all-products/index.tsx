@@ -1,41 +1,37 @@
-import { listProducts } from "@lib/data/products"
-import { HttpTypes } from "@medusajs/types"
-import { Text } from "@medusajs/ui"
-
-import ProductPreview from "@modules/products/components/product-preview"
+import { Suspense } from "react"
+import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
+import RefinementList from "@modules/store/components/refinement-list"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import PaginatedProducts from "@modules/store/templates/paginated-products"
 
 export default async function AllProducts({
-  region,
+  sortBy,
+  page,
+  countryCode,
 }: {
-  region: HttpTypes.StoreRegion
+  sortBy?: SortOptions
+  page?: string
+  countryCode: string
 }) {
-  const {
-    response: { products: pricedProducts },
-  } = await listProducts({
-    regionId: region.id,
-    queryParams: {
-      fields: "*variants.calculated_price,*variants.prices",
-      limit: 12,
-    },
-  })
-
-  if (!pricedProducts) {
-    return null
-  }
+  const pageNumber = page ? parseInt(page) : 1
+  const sort = sortBy || "created_at"
 
   return (
     <div className="content-container pb-12">
-      <div className="flex justify-center mb-8 prose">
-        <h2 className="text-primary">All Products</h2>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-ui-border-base gap-4">
+        <h2 className="text-2xl font-serif text-black">All Products</h2>
+        <RefinementList sortBy={sort} />
       </div>
-      <ul className="grid small:grid-cols-4 gap-x-6 gap-y-12">
-        {pricedProducts &&
-          pricedProducts.map((product) => (
-            <li key={product.id}>
-              <ProductPreview product={product} region={region} />
-            </li>
-          ))}
-      </ul>
+
+      <div className="w-full">
+        <Suspense fallback={<SkeletonProductGrid />}>
+          <PaginatedProducts
+            sortBy={sort}
+            page={pageNumber}
+            countryCode={countryCode}
+          />
+        </Suspense>
+      </div>
     </div>
   )
 }
