@@ -70,7 +70,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Poppins",
+          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -78,8 +78,8 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: ["Marcellus", "serif"],
-        display: ["Marcellus", "serif"],
+        serif: ["Gelasio", "serif"],
+        display: ["Gelasio", "serif"],
       },
       keyframes: {
         ring: {
@@ -151,6 +151,14 @@ module.exports = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(0)" },
         },
+        "slide-up-in": {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "slide-up-out": {
+          "0%": { transform: "translateY(0)", opacity: "1" },
+          "100%": { transform: "translateY(-100%)", opacity: "0" },
+        },
       },
       animation: {
         ring: "ring 2.2s cubic-bezier(0.5, 0, 0.5, 1) infinite",
@@ -165,6 +173,8 @@ module.exports = {
           "accordion-slide-up 300ms cubic-bezier(0.87, 0, 0.13, 1) forwards",
         enter: "enter 200ms ease-out",
         "slide-in": "slide-in 1.2s cubic-bezier(.41,.73,.51,1.02)",
+        "slide-up-in": "slide-up-in 0.4s ease-out forwards",
+        "slide-up-out": "slide-up-out 0.4s ease-in forwards",
         leave: "leave 150ms ease-in forwards",
       },
     },

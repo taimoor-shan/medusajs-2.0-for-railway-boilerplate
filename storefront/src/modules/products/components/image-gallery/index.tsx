@@ -29,8 +29,8 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   const hoverImage = canShowAlternateOnHover ? images[1] : null
 
   return (
-    <div className="flex gap-x-4 relative w-full">
-       {/* Thumbnails */}
+    <div className="flex gap-x-4 relative w-full justify-end">
+      {/* Thumbnails */}
       {images.length > 1 && (
         <div className="flex flex-col gap-y-4">
           {images.map((image, index) => {
@@ -66,7 +66,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       )}
       {/* Main Image */}
       <Container
-        className="relative aspect-[4/5] w-full overflow-hidden bg-ui-bg-subtle group"
+        className="relative aspect-[4/5] w-full max-w-[500px] overflow-hidden bg-ui-bg-subtle group"
         id={activeImage.id}
       >
         {!!activeImage.url && (

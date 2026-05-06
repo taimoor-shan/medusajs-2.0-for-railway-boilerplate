@@ -3,6 +3,7 @@ import React, { Suspense } from "react"
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
+import ProductInfoBlocks from "@modules/products/components/product-info-blocks"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
@@ -57,10 +58,13 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
 
-          <ProductTabs product={product} />
+{/* <ProductTabs product={product} /> */}
 
           <ProductOnboardingCta />
         </div>
+      </div>
+      <div className="content-container my-16 small:my-32">
+        <ProductInfoBlocks product={product} />
       </div>
       <div
         className="content-container my-16 small:my-32"
