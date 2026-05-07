@@ -52,7 +52,7 @@ export default function HeaderWrapper({ topBar, children }: HeaderWrapperProps) 
 
   return (
     <div
-      className="sticky top-0 inset-x-0 z-[100] will-change-transform"
+      className="sticky top-0 inset-x-0 z-50 will-change-transform"
       style={{
         transform: `translateY(${hidden ? -topBarH : 0}px)`,
         transition: "transform 0.3s ease",

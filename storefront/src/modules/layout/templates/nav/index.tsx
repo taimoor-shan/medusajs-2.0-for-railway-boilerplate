@@ -41,8 +41,8 @@ export default async function Nav() {
               className="flex items-center gap-3"
               data-testid="nav-store-link"
             >
-              <img src="/logo-mark.png" alt="Logo" className="w-9 object-contain" />
-              <h1 className="font-serif text-black text-3xl leading-none">{storeName}</h1>
+              <img src="/logo-full.png" alt="Logo" className="w-48 object-contain" />
+              {/* <h1 className="font-serif text-black text-3xl leading-none">{storeName}</h1> */}
             </LocalizedClientLink>
           </div>
 

@@ -23,7 +23,7 @@ const Hero = ({ page }: HeroProps) => {
 
   return (
     <div
-      className="h-[95vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle bg-center bg-cover"
+      className="h-[calc(100vh-133px)] w-full border-b border-ui-border-base relative bg-ui-bg-subtle bg-center bg-cover"
       style={backgroundImage ? { backgroundImage } : undefined}
     >
       {/* <div className="absolute inset-0 z-0 bg-overlay" /> */}

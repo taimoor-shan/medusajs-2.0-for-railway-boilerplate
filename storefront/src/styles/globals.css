@@ -6,6 +6,7 @@
   /* Brand */
   --color-primary: #ba594d;
   --color-primary-hover: #a64739;
+  --color-primary-outline: #d9a8a0;
 
   /* Background */
   --color-bg-base: #ffffff;
@@ -52,7 +53,7 @@
 
   --border-base: var(--color-border-base);
   --border-strong: var(--color-border-strong);
-  --border-interactive: var(--color-primary);
+  --border-interactive: var(--color-primary-outline);
 
   --button-neutral: var(--color-primary);
   --button-neutral-hover: var(--color-primary-hover);
@@ -73,6 +74,13 @@
 @layer base {
   body {
     @apply font-sans;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    --tw-ring-color: var(--color-primary-outline);
+    border-color: var(--color-primary-outline);
   }
 
   h1,
