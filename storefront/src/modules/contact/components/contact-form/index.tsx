@@ -34,7 +34,13 @@ export default function ContactForm() {
     } catch (err: any) {
       console.error("Contact form error:", err)
       setStatus("error")
-      setErrorMessage(err.message || "Something went wrong. Please try again.")
+      // err.message from the SDK FetchError is either the response body's `message`
+      // field or the HTTP statusText — both are user-safe to display.
+      // If the backend returned a Zod validation error array, stringify it.
+      const message = Array.isArray(err.message)
+        ? err.message.map((m: any) => m.message || m).join(", ")
+        : err.message
+      setErrorMessage(message || "Something went wrong. Please try again.")
     }
   }
 
@@ -57,20 +63,20 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-y-6">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-y-2">
           <label htmlFor="name" className="text-sm font-medium text-ui-fg-base">
             Name <span className="text-ui-fg-error">*</span>
           </label>
-          <Input id="name" name="name" required placeholder="Your full name" />
+          <Input id="name" name="name" placeholder="Your full name" />
         </div>
         
         <div className="flex flex-col gap-y-2">
           <label htmlFor="email" className="text-sm font-medium text-ui-fg-base">
             Email <span className="text-ui-fg-error">*</span>
           </label>
-          <Input id="email" name="email" type="email" required placeholder="your.email@example.com" />
+          <Input id="email" name="email" placeholder="your.email@example.com" />
         </div>
       </div>
 
@@ -78,19 +84,18 @@ export default function ContactForm() {
         <label htmlFor="subject" className="text-sm font-medium text-ui-fg-base">
           Subject <span className="text-ui-fg-error">*</span>
         </label>
-        <Input id="subject" name="subject" required placeholder="What is this regarding?" />
+        <Input id="subject" name="subject" placeholder="What is this regarding?" />
       </div>
 
       <div className="flex flex-col gap-y-2">
         <label htmlFor="message" className="text-sm font-medium text-ui-fg-base">
           Message <span className="text-ui-fg-error">*</span>
         </label>
-        <Textarea 
-          id="message" 
-          name="message" 
-          required 
+        <Textarea
+          id="message"
+          name="message"
           placeholder="How can we help you?"
-          rows={6} 
+          rows={6}
         />
       </div>
 

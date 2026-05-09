@@ -66,7 +66,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       )}
       {/* Main Image */}
       <Container
-        className="relative aspect-[4/5] w-full max-w-[500px] overflow-hidden bg-ui-bg-subtle group"
+        className="relative aspect-[4/5] w-full max-w-[600px] overflow-hidden bg-ui-bg-subtle group"
         id={activeImage.id}
       >
         {!!activeImage.url && (

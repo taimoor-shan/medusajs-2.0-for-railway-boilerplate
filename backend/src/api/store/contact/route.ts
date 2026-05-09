@@ -27,11 +27,11 @@ export async function POST(
     });
 
     if (error) {
-      return res.status(400).json({ error });
+      return res.status(400).json({ message: error.message, ...error });
     }
 
     return res.status(200).json({ success: true, data });
   } catch (error) {
-    return res.status(500).json({ error: "Failed to send message" });
+    return res.status(500).json({ message: "Failed to send message" });
   }
 }

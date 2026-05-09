@@ -37,13 +37,13 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         data-testid="product-container"
       >
         {/* Left Column - Image Gallery */}
-        <div className="block w-full small:w-[50%] relative">
+        <div className="block w-full small:w-[55%] small:sticky small:top-28">
           <ImageGallery images={images} />
         </div>
 
         {/* Right Column - Product Details sticky wrapper */}
-        <div className="flex flex-col small:sticky small:top-24 w-full small:w-[50%] py-8 gap-y-12">
-          
+        <div className="flex flex-col w-full small:w-[45%] py-8 gap-y-12">
+
           <ProductInfo product={product} />
           
           <Suspense
@@ -58,7 +58,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
 
-{/* <ProductTabs product={product} /> */}
+<ProductTabs product={product} />
 
           <ProductOnboardingCta />
         </div>
