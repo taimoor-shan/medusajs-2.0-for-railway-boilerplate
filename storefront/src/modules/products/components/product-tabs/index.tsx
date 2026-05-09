@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import { HttpTypes } from "@medusajs/types"
 
 type ProductTabsProps = {
@@ -12,21 +9,19 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   const keyFeaturesRaw = metadata?.key_features
   let parsedKeyFeatures: string[] = []
-  
+
   if (Array.isArray(keyFeaturesRaw)) {
     parsedKeyFeatures = keyFeaturesRaw
   } else if (typeof keyFeaturesRaw === "string") {
     try {
-      // If the user pasted `"A", "B"`, wrapping in brackets makes it valid JSON
-      const wrapped = keyFeaturesRaw.trim().startsWith("[") 
-        ? keyFeaturesRaw 
+      const wrapped = keyFeaturesRaw.trim().startsWith("[")
+        ? keyFeaturesRaw
         : `[${keyFeaturesRaw}]`;
       const parsed = JSON.parse(wrapped);
       if (Array.isArray(parsed)) {
         parsedKeyFeatures = parsed;
       }
     } catch (e) {
-      // Fallback: split by newlines or commas, and remove extra quotes
       parsedKeyFeatures = keyFeaturesRaw
         .split(/\n|,(?=\s*")/)
         .map((s) => s.replace(/^"|"$/g, "").trim())
@@ -52,53 +47,39 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     }
   }
 
-  // Build tabs dynamically — only show tabs that have data
-  const tabs: { label: string; component: React.ReactNode }[] = []
+  const sections: { label: string; component: React.ReactNode }[] = []
+
+  sections.push({
+    label: "Specifications",
+    component: <SpecificationsTab product={product} pot={parsedPot} />,
+  })
 
   if (parsedKeyFeatures.length > 0) {
-    tabs.push({
+    sections.push({
       label: "Key Features",
       component: <KeyFeaturesTab features={parsedKeyFeatures} />,
     })
   }
 
-  // Specifications tab always shows if product has any native fields
-  tabs.push({
-    label: "Specifications",
-    component: <SpecificationsTab product={product} pot={parsedPot} />,
-  })
-
   if (care) {
-    tabs.push({
+    sections.push({
       label: "Maintenance & Care",
       component: <CareTab instructions={care} />,
     })
   }
 
-  const [activeTab, setActiveTab] = useState(0)
-
-  if (tabs.length === 0) return null
+  if (sections.length === 0) return null
 
   return (
-    <div className="w-full">
-      <div className="flex border-b border-ui-border-base gap-x-6 overflow-x-auto no-scrollbar">
-        {tabs.map((tab, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveTab(i)}
-            className={`py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
-              activeTab === i
-                ? "border-primary text-ui-fg-base"
-                : "border-transparent text-ui-fg-subtle hover:text-ui-fg-base"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-      <div className="pt-4">
-        {tabs[activeTab].component}
-      </div>
+    <div className="w-full divide-y divide-ui-border-base border-y border-ui-border-base">
+      {sections.map((section, i) => (
+        <div key={i}>
+          <h2 className="py-4 text-xl font-medium text-ui-fg-base">
+            {section.label}
+          </h2>
+          {section.component}
+        </div>
+      ))}
     </div>
   )
 }
