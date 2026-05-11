@@ -169,7 +169,7 @@ const LanguageSelect = ({
             leaveTo="opacity-0"
           >
             <ListboxOptions
-              className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-white drop-shadow-md text-small-regular uppercase text-black no-scrollbar rounded-rounded w-full min-w-[320px]"
+              className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 max-h-[442px] overflow-y-scroll z-[900] bg-canvas drop-shadow-md text-small-regular uppercase text-ink no-scrollbar rounded-rounded w-full min-w-[320px]"
               static
             >
               {options.map((o) => (

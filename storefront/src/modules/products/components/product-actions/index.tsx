@@ -215,7 +215,7 @@ export default function ProductActions({
               quantityExceedsStock
             }
             variant="primary"
-            className="flex-1 h-10"
+            className="flex-1 h-10 !bg-primary hover:!bg-primary-hover !text-on-primary !shadow-none !border-none"
             isLoading={isAdding}
             data-testid="add-product-button"
           >

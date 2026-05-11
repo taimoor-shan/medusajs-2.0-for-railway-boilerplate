@@ -32,7 +32,7 @@ export default async function Nav() {
         />
       }
     >
-      <header className="relative mx-auto border-b duration-200 bg-white border-ui-border-base py-4 small:py-6">
+      <header className="relative mx-auto border-b duration-200 bg-canvas border-hairline py-4 small:py-6">
         <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex h-full w-full items-center justify-between gap-x-4 text-small-regular small:grid small:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           {/* Left: Logo */}
           <div className="flex items-center gap-x-4 justify-self-start">
@@ -42,7 +42,7 @@ export default async function Nav() {
               data-testid="nav-store-link"
             >
               <img src="/logo-full.png" alt="Logo" className="w-48 object-contain" />
-              {/* <h1 className="font-serif text-black text-3xl leading-none">{storeName}</h1> */}
+              {/* <h1 className="font-display text-ink text-3xl leading-none">{storeName}</h1> */}
             </LocalizedClientLink>
           </div>
 
@@ -50,28 +50,28 @@ export default async function Nav() {
           <div className="hidden h-full items-center justify-self-center small:flex">
             <div className="flex items-center gap-x-8 whitespace-nowrap">
               <LocalizedClientLink
-                className="hover:text-primary text-sm text-black uppercase"
+                className="hover:text-primary text-sm text-ink uppercase"
                 href="/"
                 data-testid="nav-home-link"
               >
                 Home
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-primary text-sm text-black uppercase"
+                className="hover:text-primary text-sm text-ink uppercase"
                 href="/store"
                 data-testid="nav-store-link-center"
               >
                 Store
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-primary text-sm text-black uppercase"
+                className="hover:text-primary text-sm text-ink uppercase"
                 href="/about"
                 data-testid="nav-about-link"
               >
                 About
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-primary text-sm text-black uppercase"
+                className="hover:text-primary text-sm text-ink uppercase"
                 href="/contact"
                 data-testid="nav-contact-link"
               >
@@ -85,7 +85,7 @@ export default async function Nav() {
             <div className="hidden small:flex items-center gap-x-4">
               {/* Account Icon */}
               <LocalizedClientLink
-                className="flex  items-center justify-center rounded-full text-black"
+                className="flex  items-center justify-center rounded-full text-ink"
                 href="/account"
                 data-testid="nav-account-link"
                 aria-label="Account"
@@ -97,7 +97,7 @@ export default async function Nav() {
               <Suspense
                 fallback={
                   <LocalizedClientLink
-                    className="flex  items-center justify-center rounded-full text-black"
+                    className="flex  items-center justify-center rounded-full text-ink"
                     href="/cart"
                     data-testid="nav-cart-link"
                     aria-label="Shopping cart"
@@ -114,7 +114,7 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="small:hidden flex h-20 w-20 items-center justify-center rounded-full text-black"
+                  className="small:hidden flex h-20 w-20 items-center justify-center rounded-full text-ink"
                   href="/cart"
                   data-testid="mobile-nav-cart-link"
                   aria-label="Shopping cart"

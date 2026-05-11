@@ -85,7 +85,7 @@ const SideMenu = ({
                 <PopoverPanel className="flex flex-col absolute w-full sm:w-1/3 2xl:w-1/4 sm:min-w-min h-screen z-[9999] top-0 left-0 text-sm text-ui-fg-on-color backdrop-blur-2xl overflow-hidden">
                   <div
                     data-testid="nav-menu-popup"
-                    className="flex flex-col h-full bg-[rgba(3,7,18,0.5)] justify-between p-6"
+                    className="flex flex-col h-full bg-surface-dark/50 justify-between p-6"
                   >
                     <div className="flex justify-end" id="xmark">
                       <button data-testid="close-menu-button" onClick={close}>

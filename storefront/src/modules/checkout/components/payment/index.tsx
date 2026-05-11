@@ -108,7 +108,7 @@ const Payment = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <div className="bg-canvas">
       <div className="flex flex-col mb-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-y-4">
           <Heading

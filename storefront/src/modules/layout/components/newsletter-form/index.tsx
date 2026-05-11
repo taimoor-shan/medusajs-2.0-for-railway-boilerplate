@@ -26,7 +26,7 @@ export default function NewsletterForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="youremail@example.com" 
-          className="flex-grow border border-gray-400 px-4 py-3 rounded-l-sm bg-white text-base focus:outline-none focus:ring-1 focus:ring-gray-500 text-gray-900"
+          className="flex-grow border border-hairline px-4 py-3 rounded-l-sm bg-canvas text-base focus:outline-none focus:ring-1 focus:ring-primary text-ink"
           required
           disabled={status === "loading" || status === "success"}
         />
@@ -35,7 +35,7 @@ export default function NewsletterForm() {
           disabled={status === "loading" || status === "success"}
           className={clx(
             "text-white px-6 py-3 font-bold text-base transition-colors rounded-r-sm min-w-[100px]",
-            status === "success" ? "bg-green-600" : "bg-[#BA594C] hover:bg-[#a04a3e]",
+            status === "success" ? "bg-success" : "bg-primary hover:bg-primary-hover",
             (status === "loading" || status === "success") && "opacity-75 cursor-not-allowed"
           )}
         >

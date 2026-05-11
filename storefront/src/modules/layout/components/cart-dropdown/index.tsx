@@ -90,7 +90,7 @@ const CartDropdown = ({
         }
         className={
           iconOnly
-            ? "flex items-center justify-center rounded-full text-black cursor-pointer"
+            ? "flex items-center justify-center rounded-full text-ink cursor-pointer"
             : "hover:text-ui-fg-base cursor-pointer"
         }
       >
@@ -106,18 +106,18 @@ const CartDropdown = ({
 
       {/* Dropdown panel */}
       <div
-        className={`absolute right-0 top-full z-50 mt-2 w-[420px] bg-white border border-gray-200 shadow-lg text-ui-fg-base origin-top-right transition-all duration-200 ${
+        className={`absolute right-0 top-full z-50 mt-2 w-[420px] bg-canvas border border-hairline shadow-lg text-ui-fg-base origin-top-right transition-all duration-200 ${
           open
             ? "opacity-100 visible translate-y-0 scale-100"
             : "opacity-0 invisible -translate-y-1 scale-95 pointer-events-none"
         }`}
       >
-        <div className="p-4 flex items-center justify-between border-b border-gray-100">
+        <div className="p-4 flex items-center justify-between border-b border-hairline-soft">
           <h3 className="text-large-semi">Cart</h3>
           <button
             type="button"
             onClick={close}
-            className="p-1 rounded-full hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-full hover:bg-surface-card transition-colors"
             aria-label="Close cart"
           >
             <X className="w-5 h-5" />
@@ -194,7 +194,7 @@ const CartDropdown = ({
                 ))}
             </div>
 
-            <div className="p-4 border-t border-gray-100 flex flex-col gap-y-4 text-small-regular">
+            <div className="p-4 border-t border-hairline-soft flex flex-col gap-y-4 text-small-regular">
               <div className="flex items-center justify-between">
                 <span className="text-ui-fg-base font-semibold">
                   Subtotal <span className="font-normal">(excl. taxes)</span>
@@ -219,7 +219,7 @@ const CartDropdown = ({
           </>
         ) : (
           <div className="flex py-16 flex-col gap-y-4 items-center justify-center px-4">
-            <div className="bg-gray-900 text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-white">
+            <div className="bg-surface-dark text-small-regular flex items-center justify-center w-6 h-6 rounded-full text-on-dark">
               <span>0</span>
             </div>
             <span>Your shopping bag is empty.</span>

@@ -26,7 +26,7 @@ const StoreTemplate = ({
       {/* Top bar: title on left, filters on right */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-ui-border-base gap-4">
         <h1
-          className="text-2xl font-serif text-black"
+          className="text-2xl font-display text-ink"
           data-testid="store-page-title"
         >
           All Products
