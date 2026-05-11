@@ -58,6 +58,7 @@ module.exports = {
         // Borders
         hairline: "#e6dfd8",
         "hairline-soft": "#ebe6df",
+        "hairline-strong": "#d4c9bc",
         // Accent & Semantic
         "accent-teal": "#5db8a6",
         "accent-amber": "#e8a55a",
@@ -93,7 +94,6 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "var(--font-sans)",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -102,8 +102,8 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: ["var(--font-display)", "Gelasio", "Georgia", "serif"],
-        display: ["var(--font-display)", "Gelasio", "Georgia", "serif"],
+        serif: [ "Gelasio", "Georgia", "serif"],
+        display: ["Gelasio", "Georgia", "serif"],
       },
       keyframes: {
         ring: {

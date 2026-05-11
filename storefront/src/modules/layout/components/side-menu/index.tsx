@@ -46,7 +46,7 @@ const SideMenu = ({
                 <Popover.Button
                   data-testid="nav-menu-button"
                   className={clx(
-                    "relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 ease-out hover:text-ui-fg-base focus:outline-none",
+                    "relative flex h-11 w-11 items-center justify-center rounded-full transition-all duration-200 ease-out hover:text-ink focus:outline-none",
                     triggerClassName
                   )}
                   aria-label="Open menu"
@@ -58,7 +58,7 @@ const SideMenu = ({
 
               {open && (
                 <div
-                  className="fixed inset-0 z-[9998] bg-black/0 pointer-events-auto"
+                  className="fixed inset-0 z-[9998] bg-surface-dark/0 pointer-events-auto"
                   onClick={close}
                   data-testid="side-menu-backdrop"
                 />
@@ -82,7 +82,7 @@ const SideMenu = ({
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <PopoverPanel className="flex flex-col absolute w-full sm:w-1/3 2xl:w-1/4 sm:min-w-min h-screen z-[9999] top-0 left-0 text-sm text-ui-fg-on-color backdrop-blur-2xl overflow-hidden">
+                <PopoverPanel className="flex flex-col absolute w-full sm:w-1/3 2xl:w-1/4 sm:min-w-min h-screen z-[9999] top-0 left-0 text-sm text-on-primary backdrop-blur-2xl overflow-hidden">
                   <div
                     data-testid="nav-menu-popup"
                     className="flex flex-col h-full bg-surface-dark/50 justify-between p-6"
@@ -98,7 +98,7 @@ const SideMenu = ({
                           <li key={name}>
                             <LocalizedClientLink
                               href={href}
-                              className="text-3xl leading-10 hover:text-ui-fg-disabled"
+                              className="text-3xl leading-10 hover:text-muted-soft"
                               onClick={close}
                               data-testid={`${name.toLowerCase()}-link`}
                             >

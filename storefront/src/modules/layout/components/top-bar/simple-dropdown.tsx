@@ -46,7 +46,7 @@ export default function SimpleDropdown({
     <div className="relative h-full" ref={containerRef}>
       <button
         type="button"
-        className="flex items-center gap-x-1.5 h-full text-xs text-white hover:text-gray-300 transition-colors"
+        className="flex items-center gap-x-1.5 h-full text-xs text-on-dark hover:text-on-dark-soft transition-colors"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
@@ -70,7 +70,7 @@ export default function SimpleDropdown({
 
       {/* Dropdown menu */}
       <div
-        className={`absolute top-full z-30 min-w-[180px] bg-black text-white shadow-lg ${
+        className={`absolute top-full z-30 min-w-[180px] bg-surface-dark text-on-dark shadow-lg ${
           align === "right" ? "right-0" : "left-0"
         } transition-all duration-200 origin-top ${
           open

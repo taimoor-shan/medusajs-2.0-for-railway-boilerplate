@@ -126,7 +126,7 @@ const CountrySelect = ({
             leaveTo="opacity-0"
           >
           <ListboxOptions
-  className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 z-[900] max-h-[442px] w-full min-w-[320px] overflow-y-scroll rounded-rounded bg-canvas text-small-regular uppercase text-ink drop-shadow-md no-scrollbar"
+  className="absolute bottom-full top-auto xsmall:top-[calc(100%-36px)] xsmall:bottom-auto left-0 xsmall:left-auto xsmall:right-0 z-[900] max-h-[442px] w-full min-w-[320px] overflow-y-scroll rounded-md bg-canvas text-small-regular uppercase text-ink drop-shadow-md no-scrollbar"
   static
 >
               {options?.map((o, index) => {
@@ -134,7 +134,7 @@ const CountrySelect = ({
                   <ListboxOption
                     key={index}
                     value={o}
-                    className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
+                    className="py-2 hover:bg-surface-card px-3 cursor-pointer flex items-center gap-x-2"
                   >
                     {/* @ts-ignore */}
                     <ReactCountryFlag

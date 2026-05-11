@@ -34,8 +34,8 @@ export default function NewsletterForm() {
           type="submit" 
           disabled={status === "loading" || status === "success"}
           className={clx(
-            "text-white px-6 py-3 font-bold text-base transition-colors rounded-r-sm min-w-[100px]",
-            status === "success" ? "bg-success" : "bg-primary hover:bg-primary-hover",
+            "btn-primary rounded-l-none",
+            status === "success" && "bg-success hover:bg-success",
             (status === "loading" || status === "success") && "opacity-75 cursor-not-allowed"
           )}
         >
@@ -43,7 +43,7 @@ export default function NewsletterForm() {
         </button>
       </div>
       {status === "success" && (
-        <p className="text-sm text-green-700 mt-2 absolute -bottom-6">Thank you for subscribing!</p>
+        <p className="text-sm text-success mt-2 absolute -bottom-6">Thank you for subscribing!</p>
       )}
     </form>
   )

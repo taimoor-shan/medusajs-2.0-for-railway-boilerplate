@@ -176,29 +176,29 @@ export default function ProductActions({
         <ProductPrice product={product} variant={selectedVariant} />
 
         {quantityExceedsStock && (
-          <p className="text-red-500 text-xs">
+          <p className="text-error text-xs">
             Only {maxQuantity} item{maxQuantity !== 1 ? "s" : ""} available in stock.
           </p>
         )}
         <div className="flex gap-x-3">
-          <div className="flex items-center border border-ui-border-base rounded-md">
+          <div className="flex items-center border border-hairline rounded-md">
             <button
               type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               disabled={isAdding || !!disabled || !inStock || !selectedVariant}
-              className="w-10 h-10 flex items-center justify-center text-ui-fg-base hover:bg-ui-bg-subtle disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-l-md"
+              className="w-10 h-10 flex items-center justify-center text-ink hover:bg-surface-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-l-md"
               aria-label="Decrease quantity"
             >
               −
             </button>
-            <span className="w-10 h-10 flex items-center justify-center text-sm font-medium text-ui-fg-base select-none">
+            <span className="w-10 h-10 flex items-center justify-center text-sm font-medium text-ink select-none">
               {quantity}
             </span>
             <button
               type="button"
               onClick={() => setQuantity((q) => q + 1)}
               disabled={isAdding || !!disabled || !inStock || !selectedVariant || quantity >= maxQuantity}
-              className="w-10 h-10 flex items-center justify-center text-ui-fg-base hover:bg-ui-bg-subtle disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-r-md"
+              className="w-10 h-10 flex items-center justify-center text-ink hover:bg-surface-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-r-md"
               aria-label="Increase quantity"
             >
               +
@@ -215,7 +215,7 @@ export default function ProductActions({
               quantityExceedsStock
             }
             variant="primary"
-            className="flex-1 h-10 !bg-primary hover:!bg-primary-hover !text-on-primary !shadow-none !border-none"
+            className="flex-1 h-10"
             isLoading={isAdding}
             data-testid="add-product-button"
           >

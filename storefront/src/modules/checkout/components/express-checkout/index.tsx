@@ -99,10 +99,10 @@ const ExpressCheckout: React.FC<ExpressCheckoutProps> = ({ cart }) => {
       </div>
       <div className="relative my-6">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-ui-border-base"></div>
+          <div className="w-full border-t border-hairline"></div>
         </div>
         <div className="relative flex justify-center text-sm">
-          <span className="bg-canvas px-2 text-ui-fg-muted">Or pay with card</span>
+          <span className="bg-canvas px-2 text-muted">Or pay with card</span>
         </div>
       </div>
       <ErrorMessage error={errorMessage} data-testid="express-checkout-error-message" />

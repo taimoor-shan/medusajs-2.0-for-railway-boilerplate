@@ -34,15 +34,15 @@ export default async function Page(props: PageProps) {
     <div className="content-container py-16">
       <div className="flex flex-col gap-y-6">
         <div className="flex flex-col gap-y-2">
-          <h1 className="text-2xl font-semibold text-ui-fg-base">
+          <h1 className="text-2xl font-semibold text-ink">
             {page.title}
           </h1>
           {page.excerpt && (
-            <p className="text-ui-fg-subtle">{page.excerpt}</p>
+            <p className="text-body">{page.excerpt}</p>
           )}
         </div>
         {page.featured_image && (
-          <div className="overflow-hidden rounded-md border border-ui-border-base">
+          <div className="overflow-hidden rounded-md border border-hairline">
             <img
               src={page.featured_image}
               alt={page.title}

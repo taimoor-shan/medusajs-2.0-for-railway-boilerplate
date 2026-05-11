@@ -23,7 +23,7 @@ const Hero = ({ page }: HeroProps) => {
 
   return (
     <div
-      className="h-[calc(100vh-133px)] w-full border-b border-ui-border-base relative bg-ui-bg-subtle bg-center bg-cover"
+      className="h-[calc(100vh-133px)] w-full border-b border-hairline relative bg-surface-card bg-center bg-cover"
       style={backgroundImage ? { backgroundImage } : undefined}
     >
       {/* <div className="absolute inset-0 z-0 bg-overlay" /> */}
@@ -38,13 +38,13 @@ const Hero = ({ page }: HeroProps) => {
         <span>
           <Heading
             level="h1"
-            className="lg:text-5xl text-3xl text-ui-fg-base text-on-primary mb-5 font-display leading-tight"
+            className="lg:text-5xl text-3xl text-ink text-on-primary mb-5 font-display leading-tight"
           >
             {title}
           </Heading>
           <Heading
             level="h2"
-            className="text-base text-ui-fg-subtle font-normal text-on-primary"
+            className="text-base text-body font-normal text-on-primary"
           >
             {excerpt}
           </Heading>
@@ -56,7 +56,7 @@ const Hero = ({ page }: HeroProps) => {
         </LocalizedClientLink>
       </div>
       <button
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-white hover:text-white transition-all duration-1000 animate-bounce"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 text-on-dark hover:text-on-dark transition-all duration-1000 animate-bounce"
         onClick={() => {
           window.scrollTo({
             top: window.innerHeight * 0.95,

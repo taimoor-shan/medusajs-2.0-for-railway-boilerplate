@@ -91,7 +91,7 @@ const AccountNav = ({
                 <li>
                   <button
                     type="button"
-                    className="flex items-center justify-between py-4 border-b border-hairline px-8 w-full"
+                    className="btn-text-link w-full justify-between py-4 border-b border-hairline px-8"
                     onClick={handleLogout}
                     data-testid="logout-button"
                   >
@@ -154,6 +154,7 @@ const AccountNav = ({
                 <button
                   type="button"
                   onClick={handleLogout}
+                  className="btn-text-link"
                   data-testid="logout-button"
                 >
                   Log out
@@ -186,8 +187,8 @@ const AccountNavLink = ({
   return (
     <LocalizedClientLink
       href={href}
-      className={clx("text-ui-fg-subtle hover:text-ui-fg-base", {
-        "text-ui-fg-base font-semibold": active,
+      className={clx("text-body hover:text-ink", {
+        "text-ink font-semibold": active,
       })}
       data-testid={dataTestId}
     >

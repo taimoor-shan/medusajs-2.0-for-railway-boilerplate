@@ -18,13 +18,13 @@ export const CardBrandLogos = ({ className, showStripe = false }: CardBrandLogos
       {["Visa", "Mastercard", "Amex", "Discover"].map((brand) => (
         <span
           key={brand}
-          className="inline-flex items-center px-2 py-0.5 rounded border border-ui-border-base bg-ui-bg-subtle text-[10px] font-medium text-ui-fg-muted uppercase tracking-wider"
+          className="inline-flex items-center px-2 py-0.5 rounded border border-hairline bg-surface-card text-[10px] font-medium text-muted uppercase tracking-wider"
         >
           {brand}
         </span>
       ))}
       {showStripe && (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-ui-border-base bg-ui-bg-subtle text-[10px] font-medium text-ui-fg-muted uppercase tracking-wider ml-0.5">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded border border-hairline bg-surface-card text-[10px] font-medium text-muted uppercase tracking-wider ml-0.5">
           <CreditCard className="w-3 h-3" />
           Stripe
         </span>

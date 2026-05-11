@@ -30,17 +30,17 @@ const features = [
 const Features = () => {
   return (
     <section className="content-container py-16 lg:py-24">
-      <h2 className="text-2xl lg:text-3xl font-display text-center text-ui-fg-base mb-12">
+      <h2 className="text-2xl lg:text-3xl font-display text-center text-ink mb-12">
         The Infinytree Promise
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
         {features.map(({ icon: Icon, title, description }) => (
           <div key={title} className="flex flex-col items-center text-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-ui-bg-subtle flex items-center justify-center">
-              <Icon size={24} className="text-ui-fg-base" />
+            <div className="w-14 h-14 rounded-full bg-surface-card flex items-center justify-center">
+              <Icon size={24} className="text-ink" />
             </div>
-            <h3 className="text-lg font-semibold text-ui-fg-base">{title}</h3>
-            <p className="text-sm text-ui-fg-subtle leading-relaxed">{description}</p>
+            <h3 className="text-lg font-semibold text-ink">{title}</h3>
+            <p className="text-sm text-body leading-relaxed">{description}</p>
           </div>
         ))}
       </div>

@@ -63,3 +63,7 @@ The storefront (`../storefront/`) depends on this backend for:
 - **CMS Pages** — `retrievePageBySlug()` hits `GET /store/pages/[slug]`
 - **Contact Form** — posts to `POST /store/contact`
 - **All commerce** — cart, checkout, products, auth via Medusa core APIs
+
+## Memory
+
+A knowledge corpus `infinytree-architecture` is maintained in claude-mem covering this backend's architecture. Rebuild after significant changes.

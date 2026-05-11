@@ -57,3 +57,7 @@ Key cross-system connections:
 - Rich text editor + image upload in admin
 - OpenTelemetry observability
 - See `backend/CLAUDE.md` for full architecture
+
+## Memory
+
+A knowledge corpus `infinytree-architecture` is maintained in claude-mem. Rebuild it after significant architecture changes.

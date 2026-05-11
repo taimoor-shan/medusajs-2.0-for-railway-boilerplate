@@ -35,12 +35,12 @@ export default async function ContactPage() {
           <div className="flex flex-col gap-y-8">
             {page?.content ? (
               <div
-                className="prose max-w-none text-ui-fg-subtle"
+                className="prose max-w-none text-body"
                 dangerouslySetInnerHTML={{ __html: page.content }}
               />
             ) : (
-              <div className="prose max-w-none text-ui-fg-subtle">
-                <h2 className="text-3xl font-display text-ui-fg-base mb-6">Get in Touch</h2>
+              <div className="prose max-w-none text-body">
+                <h2 className="text-3xl font-display text-ink mb-6">Get in Touch</h2>
                 <p>
                   At Infinytree, every piece is a unique creation. We invite you to contact us 
                   regarding inquiries about our available pieces, commissioned work, or how our 
@@ -48,17 +48,17 @@ export default async function ContactPage() {
                 </p>
                 <div className="mt-8 space-y-4">
                   <div>
-                    <strong className="block text-ui-fg-base font-medium">Email</strong>
-                    <a href="mailto:info@infinytree.com" className="hover:text-ui-fg-base transition-colors">
+                    <strong className="block text-ink font-medium">Email</strong>
+                    <a href="mailto:info@infinytree.com" className="hover:text-ink transition-colors">
                       info@infinytree.com
                     </a>
                   </div>
                   <div>
-                    <strong className="block text-ui-fg-base font-medium">Studio / Headquarters</strong>
+                    <strong className="block text-ink font-medium">Studio / Headquarters</strong>
                     <p>Budapest, Hungary<br />(By appointment only)</p>
                   </div>
                   <div>
-                    <strong className="block text-ui-fg-base font-medium">Business Hours</strong>
+                    <strong className="block text-ink font-medium">Business Hours</strong>
                     <p>Monday - Friday: 9:00 AM - 5:00 PM (CET)</p>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ export default async function ContactPage() {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="bg-ui-bg-base p-8 sm:p-10 rounded-2xl border border-ui-border-base shadow-sm">
+          <div className="bg-canvas p-8 sm:p-10 rounded-2xl border border-hairline shadow-sm">
             <h3 className="text-2xl font-display mb-6">Send us a message</h3>
             <ContactForm />
           </div>

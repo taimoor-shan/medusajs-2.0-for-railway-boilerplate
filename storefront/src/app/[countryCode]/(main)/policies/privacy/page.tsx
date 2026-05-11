@@ -21,21 +21,21 @@ export default async function PrivacyPolicyPage() {
       <div className="max-w-4xl mx-auto">
         {page?.content ? (
           <div
-            className="prose max-w-none text-ui-fg-subtle"
+            className="prose max-w-none text-body"
             dangerouslySetInnerHTML={{ __html: page.content }}
           />
         ) : (
           <>
-            <h1 className="text-2xl font-semibold text-ui-fg-base">
+            <h1 className="text-2xl font-semibold text-ink">
               {FALLBACK_TITLE}
             </h1>
-            <div className="mt-6 space-y-4 text-ui-fg-subtle">
+            <div className="mt-6 space-y-4 text-body">
               <p>This page is being updated. Please check back soon.</p>
               <p>
                 For privacy-related requests, contact us at:{" "}
                 <a
                   href="mailto:info@infinytree.com"
-                  className="text-ui-fg-base underline"
+                  className="text-ink underline"
                 >
                   info@infinytree.com
                 </a>

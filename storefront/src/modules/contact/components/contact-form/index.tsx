@@ -46,9 +46,9 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col gap-y-4 p-8 border border-ui-border-base rounded-lg bg-ui-bg-subtle text-center">
+      <div className="flex flex-col gap-y-4 p-8 border border-hairline rounded-lg bg-surface-card text-center">
         <Heading level="h2" className="text-xl">Message Sent</Heading>
-        <Text className="text-ui-fg-subtle">
+        <Text className="text-body">
           Thank you for reaching out. We have received your message and will get back to you shortly.
         </Text>
         <Button 
@@ -66,30 +66,30 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="name" className="text-sm font-medium text-ui-fg-base">
-            Name <span className="text-ui-fg-error">*</span>
+          <label htmlFor="name" className="text-sm font-medium text-ink">
+            Name <span className="text-error">*</span>
           </label>
           <Input id="name" name="name" placeholder="Your full name" />
         </div>
         
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="email" className="text-sm font-medium text-ui-fg-base">
-            Email <span className="text-ui-fg-error">*</span>
+          <label htmlFor="email" className="text-sm font-medium text-ink">
+            Email <span className="text-error">*</span>
           </label>
           <Input id="email" name="email" placeholder="your.email@example.com" />
         </div>
       </div>
 
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="subject" className="text-sm font-medium text-ui-fg-base">
-          Subject <span className="text-ui-fg-error">*</span>
+        <label htmlFor="subject" className="text-sm font-medium text-ink">
+          Subject <span className="text-error">*</span>
         </label>
         <Input id="subject" name="subject" placeholder="What is this regarding?" />
       </div>
 
       <div className="flex flex-col gap-y-2">
-        <label htmlFor="message" className="text-sm font-medium text-ui-fg-base">
-          Message <span className="text-ui-fg-error">*</span>
+        <label htmlFor="message" className="text-sm font-medium text-ink">
+          Message <span className="text-error">*</span>
         </label>
         <Textarea
           id="message"
@@ -100,7 +100,7 @@ export default function ContactForm() {
       </div>
 
       {status === "error" && (
-        <Text className="text-ui-fg-error text-sm">{errorMessage}</Text>
+        <Text className="text-error text-sm">{errorMessage}</Text>
       )}
 
       <Button 

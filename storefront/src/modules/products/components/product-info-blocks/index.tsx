@@ -90,7 +90,7 @@ const ProductInfoBlocks = ({ product }: ProductInfoBlocksProps) => {
           <h3 className="font-semibold text-primary text-base mb-4">
             Key Features
           </h3>
-          <ul className="list-disc pl-4 flex flex-col gap-y-2 marker:text-primary text-sm text-ui-fg-subtle">
+          <ul className="list-disc pl-4 flex flex-col gap-y-2 marker:text-primary text-sm text-body">
             {parsedKeyFeatures.map((feature, i) => (
               <li key={i}>{feature}</li>
             ))}
@@ -107,34 +107,34 @@ const ProductInfoBlocks = ({ product }: ProductInfoBlocksProps) => {
           {hasTreeSpecs && (
             <div>
               {hasPotSpecs && (
-                <span className="font-semibold text-ui-fg-base text-sm block mb-2">
+                <span className="font-semibold text-ink text-sm block mb-2">
                   Tree (including pot)
                 </span>
               )}
               <div className="flex flex-col gap-y-2 text-sm">
                 {Object.entries(treeSpecs).map(([key, value], i) => (
                   <div key={i} className="flex gap-x-2">
-                    <span className="font-semibold text-ui-fg-base">
+                    <span className="font-semibold text-ink">
                       {key}:
                     </span>
-                    <span className="text-ui-fg-subtle">{value}</span>
+                    <span className="text-body">{value}</span>
                   </div>
                 ))}
               </div>
             </div>
           )}
           {hasPotSpecs && (
-            <div className={hasTreeSpecs ? "mt-4 pt-4 border-t border-ui-border-base" : ""}>
-              <span className="font-semibold text-ui-fg-base text-sm block mb-2">
+            <div className={hasTreeSpecs ? "mt-4 pt-4 border-t border-hairline" : ""}>
+              <span className="font-semibold text-ink text-sm block mb-2">
                 {parsedPot?.size ? `Pot Only (${parsedPot.size})` : "Pot Only"}
               </span>
               <div className="flex flex-col gap-y-2 text-sm">
                 {Object.entries(potSpecs).map(([key, value], i) => (
                   <div key={i} className="flex gap-x-2">
-                    <span className="font-semibold text-ui-fg-base">
+                    <span className="font-semibold text-ink">
                       {key}:
                     </span>
-                    <span className="text-ui-fg-subtle">{value}</span>
+                    <span className="text-body">{value}</span>
                   </div>
                 ))}
               </div>
@@ -149,7 +149,7 @@ const ProductInfoBlocks = ({ product }: ProductInfoBlocksProps) => {
           <h3 className="font-semibold text-primary text-base mb-4">
             Maintenance &amp; Care
           </h3>
-          <p className="text-sm text-ui-fg-subtle leading-loose">{care}</p>
+          <p className="text-sm text-body leading-loose">{care}</p>
         </div>
       )}
     </div>

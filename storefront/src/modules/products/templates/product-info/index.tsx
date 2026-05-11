@@ -13,7 +13,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         {product.collection && (
           <LocalizedClientLink
             href={`/collections/${product.collection.handle}`}
-            className="text-medium text-ui-fg-muted hover:text-ui-fg-subtle"
+            className="text-medium text-muted hover:text-body"
           >
             {product.collection.title}
           </LocalizedClientLink>
@@ -21,7 +21,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       
         <Heading
           level="h2"
-          className="text-3xl leading-10 text-ui-fg-base font-display font-thin"
+          className="text-3xl leading-10 text-ink font-display font-thin"
           data-testid="product-title"
         >
           {product.title}
@@ -38,28 +38,28 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </Heading> 
         
         <Text
-          className="text-medium text-ui-fg-subtle whitespace-pre-line"
+          className="text-medium text-body whitespace-pre-line"
           data-testid="product-description"
         >
           {product.description}
         </Text>
 {/* 
         {(product.metadata as Record<string, any>)?.uniqueness_note && (
-          <Text className="text-small-regular text-ui-fg-muted italic mt-4">
+          <Text className="text-small-regular text-muted italic mt-4">
             {(product.metadata as Record<string, any>).uniqueness_note}
           </Text>
         )} */}
 
         {product.tags && product.tags.length > 0 && (
           <div className="mt-6">
-            <Text className="text-small-regular text-ui-fg-muted mb-2">
+            <Text className="text-small-regular text-muted mb-2">
               Ideal for
             </Text>
             <div className="flex flex-wrap gap-2">
               {product.tags.map((tag) => (
                 <span
                   key={tag.id}
-                  className="text-xs px-3 py-1 rounded-full border border-ui-border-base text-ui-fg-subtle"
+                  className="text-xs px-3 py-1 rounded-full border border-hairline text-body"
                 >
                   {tag.value}
                 </span>

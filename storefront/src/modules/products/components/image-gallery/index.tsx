@@ -37,16 +37,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             return (
               <button
                 key={image.id}
-                className={`relative aspect-square w-full overflow-hidden rounded-md border-2 transition-all ${
+                className={`w-[100px] h-[100px] relative aspect-square overflow-hidden rounded-md border-2 transition-all ${
                   index === activeIndex
-                    ? "border-ui-border-interactive"
-                    : "border-transparent hover:border-ui-border-strong"
+                    ? "border-primary"
+                    : "border-transparent hover:border-hairline-strong"
                 }`}
                 onClick={() => setActiveIndex(index)}
-                style={{
-                  width: "100px",
-                  height: "100px",
-                }}
               >
                 {!!image.url && (
                   <Image
@@ -66,14 +62,14 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       )}
       {/* Main Image */}
       <Container
-        className="relative aspect-[4/5] w-full max-w-[600px] overflow-hidden bg-ui-bg-subtle group"
+        className="relative aspect-[4/5] w-full max-w-[600px] overflow-hidden bg-surface-card group"
         id={activeImage.id}
       >
         {!!activeImage.url && (
           <Image
             src={activeImage.url}
             priority={true}
-            className={`absolute inset-0 rounded-rounded transition-opacity duration-300 ease-in-out ${
+            className={`absolute inset-0 rounded-md transition-opacity duration-300 ease-in-out ${
               canShowAlternateOnHover ? "group-hover:opacity-0" : ""
             }`}
             alt="Product image"
@@ -90,7 +86,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           <Image
             src={hoverImage.url}
             priority={false}
-            className="absolute inset-0 rounded-rounded opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
+            className="absolute inset-0 rounded-md opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
             alt="Product image alternate"
             fill
             sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 800px"

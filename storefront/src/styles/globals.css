@@ -3,23 +3,16 @@
 @import "tailwindcss/utilities";
 
 :root {
-  /* @medusajs/ui-preset overrides — mapped to DESIGN.md tokens */
+  /* Surfaces */
   --bg-base: #faf9f5;
   --bg-base-hover: #f5f0e8;
-  --bg-base-pressed: #efe9de;
   --bg-subtle: #efe9de;
-  --bg-subtle-hover: #e8e0d2;
-  --bg-subtle-pressed: #e8e0d2;
-  --bg-component: #f5f0e8;
-  --bg-component-hover: #efe9de;
-  --bg-component-pressed: #e8e0d2;
   --bg-interactive: #cc785c;
-  --bg-overlay: rgba(24, 23, 21, 0.7);
-  --bg-highlight: #f5f0e8;
   --bg-disabled: #e6dfd8;
   --bg-field: #faf9f5;
   --bg-field-hover: #f5f0e8;
 
+  /* Text */
   --fg-base: #141413;
   --fg-subtle: #3d3d3a;
   --fg-muted: #6c6a64;
@@ -27,23 +20,21 @@
   --fg-interactive: #cc785c;
   --fg-interactive-hover: #a9583e;
   --fg-on-color: #ffffff;
-  --fg-on-inverted: #ffffff;
+  --fg-on-inverted: #141413;
   --fg-error: #c64545;
 
+  /* Contrast (Button primary text) */
   --contrast-fg-primary: #ffffff;
-  --contrast-fg-secondary: #ffffff;
 
+  /* Borders */
   --border-base: #e6dfd8;
-  --border-strong: #d4c9bc;
-  --border-interactive: #cc785c;
   --border-error: #c64545;
-  --border-danger: #c64545;
-  --border-transparent: transparent;
 
+  /* Buttons — color */
   --button-neutral: #cc785c;
   --button-neutral-hover: #a9583e;
   --button-neutral-pressed: #a9583e;
-  --button-inverted: #ffffff;
+  --button-inverted: #faf9f5;
   --button-inverted-hover: #f5f0e8;
   --button-inverted-pressed: #e8e0d2;
   --button-danger: #c64545;
@@ -53,15 +44,13 @@
   --button-transparent-hover: rgba(20, 20, 19, 0.05);
   --button-transparent-pressed: rgba(20, 20, 19, 0.1);
 
-  --buttons-neutral: #cc785c;
-  --buttons-neutral-focus: #a9583e;
-  --buttons-inverted: #ffffff;
-  --buttons-inverted-focus: #f5f0e8;
-  --buttons-danger: #c64545;
-  --buttons-danger-focus: #a53838;
-
-  --radius-base: 8px;
-  --radius-lg: 12px;
+  /* Buttons — box-shadow (flat design = no shadow) */
+  --buttons-neutral: none;
+  --buttons-neutral-focus: none;
+  --buttons-inverted: none;
+  --buttons-inverted-focus: none;
+  --buttons-danger: none;
+  --buttons-danger-focus: none;
 }
 
 @layer base {
@@ -163,6 +152,60 @@
     @apply px-4 py-2 border border-hairline rounded-full hover:bg-primary hover:text-on-primary transition-colors duration-200 ease-in;
   }
 
+  /* DESIGN.md button component classes */
+
+  .btn-primary {
+    @apply bg-primary text-on-primary font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center transition-colors;
+  }
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-primary-hover;
+  }
+  .btn-primary:disabled {
+    @apply bg-primary-disabled text-muted cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-canvas text-ink font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center border border-hairline transition-colors;
+  }
+  .btn-secondary:hover:not(:disabled) {
+    @apply bg-surface-soft;
+  }
+
+  .btn-secondary-on-dark {
+    @apply bg-surface-dark-elevated text-on-dark font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center transition-colors;
+  }
+  .btn-secondary-on-dark:hover:not(:disabled) {
+    @apply bg-surface-dark-soft;
+  }
+
+  .btn-text-link {
+    @apply text-ink font-sans text-sm font-medium bg-transparent border-none cursor-pointer inline-flex items-center transition-colors;
+  }
+  .btn-text-link:hover {
+    @apply text-body;
+  }
+
+  .btn-icon-circular {
+    @apply bg-canvas text-ink rounded-full w-9 h-9 inline-flex items-center justify-center border border-hairline transition-colors cursor-pointer;
+  }
+  .btn-icon-circular:hover {
+    @apply bg-surface-soft;
+  }
+
+  .btn-icon-circular-dark {
+    @apply bg-surface-dark-elevated text-on-dark rounded-full w-9 h-9 inline-flex items-center justify-center border-none transition-colors cursor-pointer;
+  }
+  .btn-icon-circular-dark:hover {
+    @apply bg-surface-dark-soft;
+  }
+
+  .text-link {
+    @apply text-primary font-sans text-sm font-medium bg-transparent border-none cursor-pointer underline-offset-4;
+  }
+  .text-link:hover {
+    @apply underline;
+  }
+
   .text-xsmall-regular {
     @apply text-[10px] leading-4 font-normal;
   }
@@ -251,7 +294,7 @@
   }
 
   .prose blockquote {
-    @apply border-l-2 border-ui-border-base pl-4 italic text-ui-fg-subtle my-6;
+    @apply border-l-2 border-hairline pl-4 italic text-body my-6;
   }
 
   .prose a {
@@ -265,7 +308,7 @@
   }
 
   .prose hr {
-    @apply my-8 border-ui-border-base;
+    @apply my-8 border-hairline;
   }
 
   .prose table {
@@ -273,15 +316,15 @@
   }
 
   .prose thead th {
-    @apply text-left font-semibold text-ui-fg-base py-3 px-4 border-b-2 border-ui-border-base bg-ui-bg-subtle;
+    @apply text-left font-semibold text-ink py-3 px-4 border-b-2 border-hairline bg-surface-card;
   }
 
   .prose tbody td {
-    @apply py-3 px-4 border-b border-ui-border-base;
+    @apply py-3 px-4 border-b border-hairline;
   }
 
   .prose strong {
-    @apply font-semibold text-ui-fg-base;
+    @apply font-semibold text-ink;
   }
 
   .prose em {

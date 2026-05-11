@@ -189,7 +189,7 @@ export default function TopBar({
 
   return (
     <div
-      className={`bg-black text-white w-full h-10 small:h-12 ${className}`}
+      className={`bg-surface-dark text-on-dark w-full h-10 small:h-12 ${className}`}
     >
       <div className="content-container h-full flex items-stretch">
         {/* Left third — Contact info */}

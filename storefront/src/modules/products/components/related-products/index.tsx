@@ -52,7 +52,7 @@ export default async function RelatedProducts({
         <span className="text-base-regular text-muted mb-6">
           Related products
         </span>
-        <p className="text-2xl-regular text-ui-fg-base max-w-lg">
+        <p className="text-2xl-regular text-ink max-w-lg">
           You might also want to check out these products.
         </p>
       </div>

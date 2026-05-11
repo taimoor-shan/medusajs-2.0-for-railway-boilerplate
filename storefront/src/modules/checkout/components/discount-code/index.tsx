@@ -63,7 +63,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="txt-medium text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+              className="text-link"
               data-testid="add-discount-button"
             >
               Add Promotion Code(s)
@@ -142,7 +142,7 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
                         )
                         {/* {promotion.is_automatic && (
                           <Tooltip content="This promotion is automatically applied">
-                            <InformationCircleSolid className="inline text-zinc-400" />
+                            <InformationCircleSolid className="inline text-muted" />
                           </Tooltip>
                         )} */}
                       </span>

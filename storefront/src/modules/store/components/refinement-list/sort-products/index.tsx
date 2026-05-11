@@ -37,7 +37,7 @@ const SortProducts = ({
       <select
         value={sortBy}
         onChange={handleChange}
-        className="appearance-none w-full sm:w-auto bg-canvas border border-ui-border-base rounded-none px-4 py-2.5 pr-10 text-sm text-ink font-sans cursor-pointer focus:outline-none focus:border-black transition-colors"
+        className="appearance-none w-full sm:w-auto bg-canvas border border-hairline rounded-none px-4 py-2.5 pr-10 text-sm text-ink font-sans cursor-pointer focus:outline-none focus:border-ink transition-colors"
       >
         {sortOptions.map((option) => (
           <option key={option.value} value={option.value}>

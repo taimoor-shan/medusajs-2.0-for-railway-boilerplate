@@ -33,7 +33,7 @@ export default async function Nav() {
       }
     >
       <header className="relative mx-auto border-b duration-200 bg-canvas border-hairline py-4 small:py-6">
-        <nav className="content-container txt-xsmall-plus text-ui-fg-subtle flex h-full w-full items-center justify-between gap-x-4 text-small-regular small:grid small:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+        <nav className="content-container txt-xsmall-plus text-body flex h-full w-full items-center justify-between gap-x-4 text-small-regular small:grid small:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           {/* Left: Logo */}
           <div className="flex items-center gap-x-4 justify-self-start">
             <LocalizedClientLink

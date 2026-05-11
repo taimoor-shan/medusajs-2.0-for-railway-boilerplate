@@ -49,13 +49,13 @@ export default async function Home(props: {
   return (
     <>
       <Hero page={homePage} />
-      <About content={homePage?.content} />
+      {/* <About content={homePage?.content} /> */}
       <Features />
+          <FeaturedProducts collections={collections} region={region} />
+
       <div className="py-12">
-        <ul className="flex flex-col gap-x-6">
           <AllProducts sortBy={sortBy} page={page} countryCode={countryCode} />
-          {/* <FeaturedProducts collections={collections} region={region} /> */}
-        </ul>
+     
       </div>
     </>
   )

@@ -32,7 +32,7 @@ export const paymentInfoMap: Record<
   },
   "pp_stripe_applepay": {
     title: "Apple Pay",
-    icon: <Apple className="w-5 h-5 text-ui-fg-base" fill="currentColor" />,
+    icon: <Apple className="w-5 h-5 text-ink" fill="currentColor" />,
   },
   "pp_stripe_googlepay": {
     title: "Google Pay",

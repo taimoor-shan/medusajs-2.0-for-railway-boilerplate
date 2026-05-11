@@ -77,7 +77,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
               <span data-testid="mobile-title">{product.title}</span>
               <span>—</span>
               {selectedPrice ? (
-                <div className="flex items-end gap-x-2 text-ui-fg-base">
+                <div className="flex items-end gap-x-2 text-ink">
                   {selectedPrice.price_type === "sale" && (
                     <p>
                       <span className="line-through text-small-regular">
@@ -87,7 +87,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   )}
                   <span
                     className={clx({
-                      "text-ui-fg-interactive":
+                      "text-primary":
                         selectedPrice.price_type === "sale",
                     })}
                   >
@@ -120,7 +120,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 onClick={handleAddToCart}
                 disabled={!inStock || !variant}
                 variant="primary"
-                className="w-full !bg-primary hover:!bg-primary-hover !text-on-primary !shadow-none !border-none"
+                className="w-full"
                 isLoading={isAdding}
                 data-testid="mobile-cart-button"
               >
@@ -145,7 +145,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-700 bg-opacity-75 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-surface-dark bg-opacity-75 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed bottom-0 inset-x-0">
@@ -166,7 +166,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <div className="w-full flex justify-end pr-6">
                     <button
                       onClick={close}
-                      className="bg-canvas w-12 h-12 rounded-full text-ui-fg-base flex justify-center items-center"
+                      className="btn-icon-circular w-12 h-12"
                       data-testid="close-modal-button"
                     >
                       <X />

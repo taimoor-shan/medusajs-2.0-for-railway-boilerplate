@@ -71,10 +71,10 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   if (sections.length === 0) return null
 
   return (
-    <div className="w-full divide-y divide-ui-border-base border-y border-ui-border-base">
+    <div className="w-full divide-y divide-ui-border-base border-y border-hairline">
       {sections.map((section, i) => (
         <div key={i}>
-          <h2 className="py-4 text-xl font-medium text-ui-fg-base">
+          <h2 className="py-4 text-xl font-medium text-ink">
             {section.label}
           </h2>
           {section.component}
@@ -89,7 +89,7 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
     <div className="text-sm py-4">
       <ul className="list-disc pl-4 flex flex-col gap-y-2 marker:text-primary">
         {features.map((feature, i) => (
-          <li key={i} className="text-ui-fg-subtle">
+          <li key={i} className="text-body">
             {feature}
           </li>
         ))}
@@ -101,7 +101,7 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
 const CareTab = ({ instructions }: { instructions: string }) => {
   return (
     <div className="text-sm py-4">
-      <p className="text-ui-fg-subtle leading-loose">{instructions}</p>
+      <p className="text-body leading-loose">{instructions}</p>
     </div>
   )
 }
@@ -180,8 +180,8 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
             {Object.entries(treeSpecs).map(([key, value], i) => (
               <div key={i} className="flex flex-col gap-y-1">
-                <span className="font-semibold text-ui-fg-base">{key}</span>
-                <p className="text-ui-fg-subtle">{value}</p>
+                <span className="font-semibold text-ink">{key}</span>
+                <p className="text-body">{value}</p>
               </div>
             ))}
           </div>
@@ -190,15 +190,15 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
 
       {/* Pot specifications */}
       {hasPotSpecs && (
-        <div className={hasTreeSpecs ? "mt-8 pt-8 border-t border-ui-border-base" : ""}>
+        <div className={hasTreeSpecs ? "mt-8 pt-8 border-t border-hairline" : ""}>
           <span className="font-semibold text-primary text-base mb-4 block">
             {pot.size ? `Pot Only (${pot.size})` : "Pot Only"}
           </span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
             {Object.entries(potSpecs).map(([key, value], i) => (
               <div key={i} className="flex flex-col gap-y-1">
-                <span className="font-semibold text-ui-fg-base">{key}</span>
-                <p className="text-ui-fg-subtle">{value}</p>
+                <span className="font-semibold text-ink">{key}</span>
+                <p className="text-body">{value}</p>
               </div>
             ))}
           </div>
@@ -206,7 +206,7 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
       )}
 
       {!hasTreeSpecs && !hasPotSpecs && (
-        <p className="text-ui-fg-muted">No specifications available.</p>
+        <p className="text-muted">No specifications available.</p>
       )}
     </div>
   )

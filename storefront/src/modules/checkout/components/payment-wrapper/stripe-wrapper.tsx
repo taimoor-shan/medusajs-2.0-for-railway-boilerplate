@@ -25,26 +25,26 @@ const StripeWrapper: React.FC<StripeWrapperProps> = ({
     appearance: {
       theme: "stripe",
       variables: {
-        colorPrimary: "#1a1a2e",
-        colorBackground: "#ffffff",
-        colorText: "#30313d",
-        colorDanger: "#df1b41",
+        colorPrimary: "#cc785c",
+        colorBackground: "#faf9f5",
+        colorText: "#3d3d3a",
+        colorDanger: "#c64545",
         fontFamily: "Inter, system-ui, sans-serif",
         spacingUnit: "4px",
-        borderRadius: "6px",
+        borderRadius: "8px",
       },
       rules: {
         ".Input": {
-          border: "1px solid #e5e7eb",
+          border: "1px solid #e6dfd8",
           boxShadow: "none",
           transition: "border-color 0.15s ease, box-shadow 0.15s ease",
         },
         ".Input:hover": {
-          borderColor: "#d1d5db",
+          borderColor: "#d4c9bc",
         },
         ".Input:focus": {
-          borderColor: "#1a1a2e",
-          boxShadow: "0 0 0 1px #1a1a2e",
+          borderColor: "#cc785c",
+          boxShadow: "0 0 0 1px #cc785c",
         },
         ".Label": {
           fontWeight: "500",

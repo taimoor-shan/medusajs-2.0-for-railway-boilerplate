@@ -81,11 +81,11 @@ export default async function AboutPage(props: AboutPageProps) {
                 <p className="text-primary text-xs uppercase tracking-[0.2em] font-medium mb-4">
                   Handmade Collection
                 </p>
-                <h1 className="font-display text-3xl lg:text-5xl text-white leading-tight mb-4">
+                <h1 className="font-display text-3xl lg:text-5xl text-on-dark leading-tight mb-4">
                   {page.title}
                 </h1>
                 {page.excerpt && (
-                  <p className="text-lg text-white/80 leading-relaxed max-w-xl">
+                  <p className="text-lg text-on-dark/80 leading-relaxed max-w-xl">
                     {page.excerpt}
                   </p>
                 )}
@@ -100,11 +100,11 @@ export default async function AboutPage(props: AboutPageProps) {
             <p className="text-primary text-xs uppercase tracking-[0.2em] font-medium mb-4">
               Handmade Collection
             </p>
-            <h1 className="font-display text-3xl lg:text-5xl text-ui-fg-base leading-tight mb-4">
+            <h1 className="font-display text-3xl lg:text-5xl text-ink leading-tight mb-4">
               {page.title}
             </h1>
             {page.excerpt && (
-              <p className="text-lg text-ui-fg-subtle max-w-xl mx-auto leading-relaxed">
+              <p className="text-lg text-body max-w-xl mx-auto leading-relaxed">
                 {page.excerpt}
               </p>
             )}
@@ -120,12 +120,12 @@ export default async function AboutPage(props: AboutPageProps) {
             <div className="flex-1 min-w-0">
               <div
                 className="prose prose-lg max-w-none
-                  prose-headings:font-display prose-headings:text-ui-fg-base
-                  prose-p:text-ui-fg-subtle prose-p:leading-relaxed
+                  prose-headings:font-display prose-headings:text-ink
+                  prose-p:text-body prose-p:leading-relaxed
                   prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-ui-fg-base
-                  prose-li:text-ui-fg-subtle
-                  prose-img:rounded-large"
+                  prose-strong:text-ink
+                  prose-li:text-body
+                  prose-img:rounded-lg"
                 dangerouslySetInnerHTML={{ __html: page.content! }}
               />
             </div>
@@ -134,20 +134,20 @@ export default async function AboutPage(props: AboutPageProps) {
           {/* Promise sidebar */}
           <aside className="lg:w-80 xl:w-96 shrink-0">
             <div className="sticky top-24 space-y-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-ui-fg-subtle font-medium">
+              <p className="text-xs uppercase tracking-[0.2em] text-body font-medium">
                 The Infinytree Promise
               </p>
               <div className="space-y-5">
                 {promisePillars.map(({ icon: Icon, title, description }) => (
                   <div key={title} className="flex gap-4">
-                    <div className="w-10 h-10 rounded-full bg-ui-bg-subtle flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-10 h-10 rounded-full bg-surface-card flex items-center justify-center shrink-0 mt-0.5">
                       <Icon size={18} className="text-primary" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-semibold text-ui-fg-base mb-1">
+                      <h3 className="text-sm font-semibold text-ink mb-1">
                         {title}
                       </h3>
-                      <p className="text-sm text-ui-fg-subtle leading-relaxed">
+                      <p className="text-sm text-body leading-relaxed">
                         {description}
                       </p>
                     </div>
@@ -156,11 +156,11 @@ export default async function AboutPage(props: AboutPageProps) {
               </div>
 
               {/* Divider */}
-              <hr className="border-ui-border-base" />
+              <hr className="border-hairline" />
 
               {/* Location note */}
               <div>
-                <p className="text-xs text-ui-fg-subtle leading-relaxed">
+                <p className="text-xs text-body leading-relaxed">
                   Based in Budapest, Hungary. We ship handcrafted pieces to
                   Austria, Germany, and Hungary — with more European destinations
                   available on request.
@@ -178,12 +178,12 @@ export default async function AboutPage(props: AboutPageProps) {
       </section>
 
       {/* Closing — craftsmanship note */}
-      <section className="border-t border-ui-border-base bg-ui-bg-subtle">
+      <section className="border-t border-hairline bg-surface-card">
         <div className="content-container py-10 lg:py-14 text-center">
-          <p className="font-display text-xl lg:text-2xl text-ui-fg-base italic mb-2">
+          <p className="font-display text-xl lg:text-2xl text-ink italic mb-2">
             &ldquo;Where nature meets craftsmanship.&rdquo;
           </p>
-          <p className="text-sm text-ui-fg-subtle">
+          <p className="text-sm text-body">
             Every Infinytree piece is handmade — unique, maintenance-free, and
             designed to last.
           </p>

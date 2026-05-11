@@ -18,7 +18,7 @@ export default async function AllProducts({
 
   return (
     <div className="content-container pb-12">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-ui-border-base gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-hairline gap-4">
         <h2 className="text-2xl font-display text-ink">All Products</h2>
         <RefinementList sortBy={sort} />
       </div>

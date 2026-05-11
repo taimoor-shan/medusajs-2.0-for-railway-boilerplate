@@ -91,7 +91,7 @@ const CartDropdown = ({
         className={
           iconOnly
             ? "flex items-center justify-center rounded-full text-ink cursor-pointer"
-            : "hover:text-ui-fg-base cursor-pointer"
+            : "hover:text-ink cursor-pointer"
         }
       >
         {iconOnly ? (
@@ -106,7 +106,7 @@ const CartDropdown = ({
 
       {/* Dropdown panel */}
       <div
-        className={`absolute right-0 top-full z-50 mt-2 w-[420px] bg-canvas border border-hairline shadow-lg text-ui-fg-base origin-top-right transition-all duration-200 ${
+        className={`absolute right-0 top-full z-50 mt-2 w-[420px] bg-canvas border border-hairline shadow-lg text-ink origin-top-right transition-all duration-200 ${
           open
             ? "opacity-100 visible translate-y-0 scale-100"
             : "opacity-0 invisible -translate-y-1 scale-95 pointer-events-none"
@@ -117,7 +117,7 @@ const CartDropdown = ({
           <button
             type="button"
             onClick={close}
-            className="p-1 rounded-full hover:bg-surface-card transition-colors"
+            className="btn-icon-circular"
             aria-label="Close cart"
           >
             <X className="w-5 h-5" />
@@ -196,7 +196,7 @@ const CartDropdown = ({
 
             <div className="p-4 border-t border-hairline-soft flex flex-col gap-y-4 text-small-regular">
               <div className="flex items-center justify-between">
-                <span className="text-ui-fg-base font-semibold">
+                <span className="text-ink font-semibold">
                   Subtotal <span className="font-normal">(excl. taxes)</span>
                 </span>
                 <span

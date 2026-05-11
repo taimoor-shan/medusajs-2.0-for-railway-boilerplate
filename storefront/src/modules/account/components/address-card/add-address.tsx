@@ -49,7 +49,7 @@ const AddAddress = ({
   return (
     <>
       <button
-        className="border border-ui-border-base rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
+        className="btn-secondary h-auto py-5 w-full flex-col"
         onClick={open}
         data-testid="add-address-button"
       >
@@ -137,7 +137,7 @@ const AddAddress = ({
             </div>
             {formState.error && (
               <div
-                className="text-rose-500 text-small-regular py-2"
+                className="text-error text-small-regular py-2"
                 data-testid="address-error"
               >
                 {formState.error}
