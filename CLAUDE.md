@@ -1,4 +1,4 @@
-# CLAUDE.md — Medusa Monorepo (Towels Store)
+# CLAUDE.md — Infinytree (artificial handmade plants webshop/store)
 
 ## Knowledge Graph (RAG)
 

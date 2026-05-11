@@ -14,8 +14,8 @@ type HeroProps = {
 }
 
 const Hero = ({ page }: HeroProps) => {
-  const title = page?.title || "Botanic Minimalism"
-  const excerpt = page?.excerpt || "Handcrafted botanical pieces designed for refined interiors, bringing timeless greenery to homes, hotels, and architectural spaces across Europe."
+  const title = page?.title || "Living Art for Timeless Interiors"
+  const excerpt = page?.excerpt || "Handmade artificial trees and botanical masterpieces — each one of a kind. No watering, no sunlight, no care. Just enduring beauty for luxury spaces."
 
   const backgroundImage = page?.featured_image
     ? `url(${page.featured_image})`
