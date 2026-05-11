@@ -29,7 +29,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </Heading>
           <Heading
           level="h3"
-          className="text-lg text-primary italic mb-6"
+          className="text-md tracking-wide text-primary uppercase mb-6"
           data-testid="product-subtitle"
         >
 

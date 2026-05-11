@@ -214,7 +214,7 @@ export default function ProductActions({
               !isValidVariant ||
               quantityExceedsStock
             }
-            variant="primary"
+            variant="secondary"
             className="flex-1 h-10"
             isLoading={isAdding}
             data-testid="add-product-button"

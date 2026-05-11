@@ -74,7 +74,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     <div className="w-full divide-y divide-ui-border-base border-y border-hairline">
       {sections.map((section, i) => (
         <div key={i}>
-          <h2 className="py-4 text-xl font-medium text-ink">
+          <h2 className="pt-4 text-xl font-medium text-ink">
             {section.label}
           </h2>
           {section.component}
