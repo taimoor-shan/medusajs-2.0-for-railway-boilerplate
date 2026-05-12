@@ -1,4 +1,5 @@
 import React, { Suspense } from "react"
+import Features from "@modules/home/components/features"
 
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
@@ -42,7 +43,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         </div>
 
         {/* Right Column - Product Details sticky wrapper */}
-        <div className="flex flex-col w-full small:w-[45%] py-8 gap-y-12">
+        <div className="flex flex-col w-full small:w-[45%] pb-8 gap-y-12">
 
           <ProductInfo product={product} />
           
@@ -63,9 +64,10 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           <ProductOnboardingCta />
         </div>
       </div>
-      <div className="content-container my-16 small:my-32">
+      {/* <div className="content-container my-16 small:my-32">
         <ProductInfoBlocks product={product} />
-      </div>
+      </div> */}
+    <Features />
       <div
         className="content-container my-16 small:my-32"
         data-testid="related-products-container"

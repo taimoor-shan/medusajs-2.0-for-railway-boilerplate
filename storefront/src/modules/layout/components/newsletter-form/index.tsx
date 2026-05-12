@@ -20,13 +20,13 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col w-full mt-4 relative">
-      <div className="flex w-full">
+      <div className="flex w-[400px]">
         <input 
           type="email" 
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="youremail@example.com" 
-          className="flex-grow border border-hairline px-4 py-3 rounded-l-sm bg-canvas text-base focus:outline-none focus:ring-1 focus:ring-primary text-ink"
+          className="flex-grow border border-hairline px-4 rounded-l-sm bg-canvas text-base focus:outline-none focus:border-primary text-ink"
           required
           disabled={status === "loading" || status === "success"}
         />

@@ -27,18 +27,18 @@ const Hero = ({ page }: HeroProps) => {
       style={backgroundImage ? { backgroundImage } : undefined}
     >
       {/* <div className="absolute inset-0 z-0 bg-overlay" /> */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6 max-w-4xl mx-auto">
+      <div className=" z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6 max-w-4xl mx-auto">
         <Image
           src="/logo.png"
           alt="Logo"
           width={300}
           height={300}
-          className="object-contain mix-blend-multiply drop-shadow-md"
+          className="object-contain"
         />
         <span>
           <Heading
             level="h1"
-            className="lg:text-5xl text-3xl text-ink text-on-primary mb-5 font-display leading-tight"
+            className="lg:text-5xl text-3xl text-ink text-on-primary mb-5 font-serif tracking-wide font-medium"
           >
             {title}
           </Heading>

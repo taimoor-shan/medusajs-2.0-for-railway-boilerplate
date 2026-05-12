@@ -1,4 +1,5 @@
 import { HttpTypes } from "@medusajs/types"
+import { ArrowLeftRight, ArrowUpDown, Move3d } from "lucide-react"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -113,6 +114,12 @@ type SpecificationsTabProps = {
   pot?: Record<string, any>
 }
 
+const dimensionIcons: Record<string, React.ReactNode> = {
+  Height: <ArrowUpDown className="h-8 w-8" />,
+  Width: <ArrowLeftRight className="h-8 w-8" />,
+  Depth: <Move3d className="h-8 w-8" />,
+}
+
 const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
   // Build tree specs from native Medusa fields
   const treeSpecs: Record<string, string> = {}
@@ -179,9 +186,16 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
           )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-4 text-sm">
             {Object.entries(treeSpecs).map(([key, value], i) => (
-              <div key={i} className="flex flex-col gap-y-1">
-                <span className="font-semibold text-ink">{key}</span>
+              <div key={i} className="flex gap-x-2 items-center">
+                 {dimensionIcons[key]}
+                  <div key={i} className="flex flex-col gap-y-1">
+                <span className="font-semibold text-ink flex items-center gap-x-1.5">
+                 
+                  {key}
+                </span>
+                
                 <p className="text-body">{value}</p>
+                </div>
               </div>
             ))}
           </div>

@@ -90,7 +90,7 @@ export default function ProductActions({
       params.delete("v_id")
     }
 
-    router.replace(pathname + "?" + params.toString())
+    router.replace(pathname + "?" + params.toString(), { scroll: false })
   }, [selectedVariant, isValidVariant])
 
   // check if the selected variant is in stock
@@ -186,7 +186,7 @@ export default function ProductActions({
               type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               disabled={isAdding || !!disabled || !inStock || !selectedVariant}
-              className="w-10 h-10 flex items-center justify-center text-ink hover:bg-surface-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-l-md"
+              className="btn-icon-circular w-10 h-10 rounded-l-md text-xs disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Decrease quantity"
             >
               −
@@ -198,7 +198,7 @@ export default function ProductActions({
               type="button"
               onClick={() => setQuantity((q) => q + 1)}
               disabled={isAdding || !!disabled || !inStock || !selectedVariant || quantity >= maxQuantity}
-              className="w-10 h-10 flex items-center justify-center text-ink hover:bg-surface-card disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-r-md"
+              className="btn-icon-circular w-10 h-10 rounded-r-md text-xs disabled:opacity-50 disabled:cursor-not-allowed"
               aria-label="Increase quantity"
             >
               +
@@ -215,7 +215,7 @@ export default function ProductActions({
               quantityExceedsStock
             }
             variant="secondary"
-            className="flex-1 h-10"
+            className="flex-1 h-10 !bg-surface-dark !text-on-dark hover:!bg-surface-dark-soft !shadow-none !border-none"
             isLoading={isAdding}
             data-testid="add-product-button"
           >

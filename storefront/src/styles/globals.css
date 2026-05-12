@@ -31,12 +31,12 @@
   --border-error: #c64545;
 
   /* Buttons — color */
-  --button-neutral: #cc785c;
-  --button-neutral-hover: #a9583e;
-  --button-neutral-pressed: #a9583e;
-  --button-inverted: #faf9f5;
-  --button-inverted-hover: #f5f0e8;
-  --button-inverted-pressed: #e8e0d2;
+  --button-inverted: #cc785c;
+  --button-inverted-hover: #a9583e;
+  --button-inverted-pressed: #a9583e;
+  --button-neutral: #faf9f5;
+  --button-neutral-hover: #f5f0e8;
+  --button-neutral-pressed: #e8e0d2;
   --button-danger: #c64545;
   --button-danger-hover: #a53838;
   --button-danger-pressed: #a53838;
@@ -266,11 +266,11 @@
   }
 
   .prose h1 {
-    @apply text-2xl leading-tight mb-4 sm:text-3xl md:text-4xl;
+    @apply text-2xl leading-tight mb-4 sm:text-3xl md:text-5xl;
   }
 
   .prose h2 {
-    @apply text-xl  mt-4 mb-6 sm:text-2xl md:text-3xl;
+    @apply text-xl  mt-8 mb-6 sm:text-2xl md:text-3xl;
   }
 
   .prose h3 {
@@ -330,4 +330,8 @@
   .prose em {
     @apply italic;
   }
+}
+
+.outline-none{
+  outline: none;
 }

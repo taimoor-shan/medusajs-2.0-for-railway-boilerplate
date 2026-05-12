@@ -94,7 +94,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Inter",
+         "var(--font-sans)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -102,8 +102,8 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: [ "Gelasio", "Georgia", "serif"],
-        display: ["Gelasio", "Georgia", "serif"],
+        serif: ["var(--font-serif)", "serif"],
+        display: ["var(--font-serif)", "serif"],
       },
       keyframes: {
         ring: {

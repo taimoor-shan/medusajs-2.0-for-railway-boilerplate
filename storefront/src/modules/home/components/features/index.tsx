@@ -29,10 +29,10 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="content-container py-16 lg:py-24">
-      <h2 className="text-2xl lg:text-3xl font-display text-center text-ink mb-12">
+    <section className="content-container pt-16 lg:pt-24">
+      {/* <h2 className="text-2xl lg:text-3xl font-display text-center text-ink mb-12">
         The Infinytree Promise
-      </h2>
+      </h2> */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
         {features.map(({ icon: Icon, title, description }) => (
           <div key={title} className="flex flex-col items-center text-center gap-4">

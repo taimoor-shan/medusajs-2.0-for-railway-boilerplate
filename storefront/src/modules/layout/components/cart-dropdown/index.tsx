@@ -211,7 +211,7 @@ const CartDropdown = ({
                 </span>
               </div>
               <LocalizedClientLink href="/cart" passHref onClick={close}>
-                <Button className="w-full" size="large" data-testid="go-to-cart-button">
+                <Button className="w-full primary" size="large" data-testid="go-to-cart-button">
                   Go to cart
                 </Button>
               </LocalizedClientLink>

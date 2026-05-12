@@ -14,12 +14,12 @@ export default async function AllProducts({
   countryCode: string
 }) {
   const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const sort = sortBy || "price_desc"
 
   return (
     <div className="content-container pb-12">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-hairline gap-4">
-        <h2 className="text-2xl font-display text-ink">All Products</h2>
+        <h2 className="text-2xl sm:text-3xl font-display text-ink">All Products</h2>
         <RefinementList sortBy={sort} />
       </div>
 
