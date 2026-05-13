@@ -38,13 +38,13 @@ const Hero = ({ page }: HeroProps) => {
         <span>
           <Heading
             level="h1"
-            className="lg:text-5xl text-3xl text-ink text-on-primary mb-5 font-serif tracking-wide font-medium"
+            className="lg:text-5xl text-3xl text-ink mb-5 font-serif text-white font-normal tracking-wide"
           >
             {title}
           </Heading>
           <Heading
             level="h2"
-            className="text-base text-body font-normal text-on-primary"
+            className="text-base text-body font-normal text-white"
           >
             {excerpt}
           </Heading>

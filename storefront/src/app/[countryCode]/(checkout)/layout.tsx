@@ -27,13 +27,14 @@ export default async function CheckoutLayout({
               Back
             </span>
           </LocalizedClientLink>
-          <LocalizedClientLink
-            href="/"
-            className="txt-compact-xlarge-plus text-body hover:text-ink uppercase"
-            data-testid="store-link"
-          >
-            {storeName}
-          </LocalizedClientLink>
+         <LocalizedClientLink
+              href="/"
+              className="flex items-center gap-3"
+              data-testid="nav-store-link"
+            >
+              <img src="/logo-full.png" alt="Logo" className="w-48 object-contain" />
+              {/* <h1 className="font-display text-ink text-3xl leading-none">{storeName}</h1> */}
+            </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>
       </div>

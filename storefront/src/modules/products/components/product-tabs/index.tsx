@@ -1,5 +1,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { ArrowLeftRight, ArrowUpDown, Move3d } from "lucide-react"
+import { isSimpleProduct } from "@lib/util/product"
+import WithdrawalNotice from "@modules/common/components/withdrawal-notice"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -52,7 +54,13 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
   sections.push({
     label: "Specifications",
-    component: <SpecificationsTab product={product} pot={parsedPot} />,
+    component: (
+      <SpecificationsTab
+        product={product}
+        pot={parsedPot}
+        isConfigured={!isSimpleProduct(product)}
+      />
+    ),
   })
 
   if (parsedKeyFeatures.length > 0) {
@@ -112,6 +120,7 @@ const CareTab = ({ instructions }: { instructions: string }) => {
 type SpecificationsTabProps = {
   product: HttpTypes.StoreProduct
   pot?: Record<string, any>
+  isConfigured?: boolean
 }
 
 const dimensionIcons: Record<string, React.ReactNode> = {
@@ -120,7 +129,7 @@ const dimensionIcons: Record<string, React.ReactNode> = {
   Depth: <Move3d className="h-8 w-8" />,
 }
 
-const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
+const SpecificationsTab = ({ product, pot, isConfigured }: SpecificationsTabProps) => {
   // Build tree specs from native Medusa fields
   const treeSpecs: Record<string, string> = {}
 
@@ -222,6 +231,8 @@ const SpecificationsTab = ({ product, pot }: SpecificationsTabProps) => {
       {!hasTreeSpecs && !hasPotSpecs && (
         <p className="text-muted">No specifications available.</p>
       )}
+
+      {isConfigured && <WithdrawalNotice variant="inline" />}
     </div>
   )
 }

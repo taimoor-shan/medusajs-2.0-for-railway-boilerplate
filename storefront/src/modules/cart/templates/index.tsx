@@ -3,7 +3,16 @@ import Summary from "./summary"
 import EmptyCartMessage from "../components/empty-cart-message"
 import SignInPrompt from "../components/sign-in-prompt"
 import Divider from "@modules/common/components/divider"
+import WithdrawalNotice from "@modules/common/components/withdrawal-notice"
 import { HttpTypes } from "@medusajs/types"
+
+const hasConfiguredItems = (cart: HttpTypes.StoreCart | null): boolean => {
+  return (
+    cart?.items?.some(
+      (item: any) => (item.variant?.options?.length || 0) > 1
+    ) ?? false
+  )
+}
 
 const CartTemplate = ({
   cart,
@@ -25,6 +34,9 @@ const CartTemplate = ({
                 </>
               )}
               <ItemsTemplate cart={cart} />
+              {hasConfiguredItems(cart) && (
+                <WithdrawalNotice variant="banner" />
+              )}
             </div>
             <div className="relative">
               <div className="flex flex-col gap-y-8 sticky top-24">

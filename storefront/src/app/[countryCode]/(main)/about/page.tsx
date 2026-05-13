@@ -134,7 +134,7 @@ export default async function AboutPage(props: AboutPageProps) {
           {/* Promise sidebar */}
           <aside className="lg:w-80 xl:w-96 shrink-0">
             <div className="sticky top-24 space-y-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-body font-medium">
+              <p className="text-xs uppercase tracking-[0.2em] text-body">
                 The Infinytree Promise
               </p>
               <div className="space-y-5">

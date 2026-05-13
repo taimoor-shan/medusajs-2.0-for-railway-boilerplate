@@ -15,25 +15,25 @@ export default async function Footer() {
   const productCategories = await listCategories()
 
   return (
-    <footer className="border-t border-hairline w-full bg-surface-soft pb-8">
+    <footer className="border-t border-hairline w-full bg-[#1f1f1f] pb-8">
       <div className="pt-20 lg:grid lg:grid-cols-12 lg:grid-rows-[auto_auto] lg:gap-x-8 lg:pt-36 max-w-[1440px] mx-auto content-container">
         <div className="lg:mt-0 lg:col-span-4 lg:row-span-1">
           <LocalizedClientLink href="/" className="inline-flex items-center gap-3 text-3xl font-display text-ink hover:text-ink">
             <img src="/logo-full.png" alt="Logo" className="w-48 object-contain" />
             {/* <span>{storeName}</span> */}
           </LocalizedClientLink>
-          <p className="text-base mb-2 mt-4 text-body">Stay updated on the latest from {storeName}</p>
+          <p className="text-base mb-2 mt-4">Stay updated on the latest from {storeName}</p>
           <NewsletterForm />
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:col-span-4 lg:col-start-6 lg:row-span-full mt-12 lg:mt-0">
           <div className="grid grid-cols-2 gap-8 lg:gap-2">
             <div>
-              <h3 className="text-lg font-bold text-ink mb-4">Shop</h3>
+              <h3 className="text-lg text-primary mb-4">Shop</h3>
               <ul className="space-y-4">
                 {collections?.slice(0, 6).map((c) => (
                   <li key={c.id}>
-                    <LocalizedClientLink className="text-primary hover:underline underline-offset-4 text-md" href={`/collections/${c.handle}`}>
+                    <LocalizedClientLink className="text-white hover:underline underline-offset-4 text-md" href={`/collections/${c.handle}`}>
                       {c.title}
                     </LocalizedClientLink>
                   </li>
@@ -42,7 +42,7 @@ export default async function Footer() {
                     if (c.parent_category) return null;
                     return (
                         <li key={c.id}>
-                            <LocalizedClientLink className="text-primary hover:underline underline-offset-4 text-md" href={`/categories/${c.handle}`}>
+                            <LocalizedClientLink className="text-white hover:underline underline-offset-4 text-md" href={`/categories/${c.handle}`}>
                                 {c.name}
                             </LocalizedClientLink>
                         </li>
