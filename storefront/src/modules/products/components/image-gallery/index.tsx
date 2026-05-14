@@ -5,6 +5,11 @@ import { Container } from "@medusajs/ui"
 import Image from "next/image"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Lightbox from "yet-another-react-lightbox"
+import Zoom from "yet-another-react-lightbox/plugins/zoom"
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails"
+import "yet-another-react-lightbox/styles.css"
+import "yet-another-react-lightbox/plugins/thumbnails.css"
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[]
@@ -12,6 +17,8 @@ type ImageGalleryProps = {
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
 
@@ -55,8 +62,10 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   }
 
   const activeImage = images[activeIndex]
+  const slides = images.map((img) => ({ src: img.url }))
 
   return (
+    <>
     <div className="flex gap-x-4 relative w-full justify-end">
       {/* Thumbnails — desktop only, scrollable if more than 6 */}
       {images.length > 1 && (
@@ -87,8 +96,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
       {/* Main Image */}
       <Container
-        className="relative aspect-[4/5] w-full max-w-[600px] overflow-hidden bg-surface-card"
+        className="relative aspect-[4/5] w-full max-w-[600px] overflow-hidden bg-surface-card cursor-pointer"
         id={activeImage.id}
+        onClick={() => {
+          setLightboxIndex(activeIndex)
+          setLightboxOpen(true)
+        }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -141,6 +154,18 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         )}
       </Container>
     </div>
+    <Lightbox
+      open={lightboxOpen}
+      close={() => setLightboxOpen(false)}
+      index={lightboxIndex}
+      slides={slides}
+      plugins={[Zoom, Thumbnails]}
+      carousel={{ imageFit: "contain" }}
+      zoom={{ scrollToZoom: true }}
+      thumbnails={{ position: "bottom", width: 80, height: 80, gap: 8 }}
+      on={{ view: ({ index: i }) => setLightboxIndex(i) }}
+    />
+  </>
   )
 }
 

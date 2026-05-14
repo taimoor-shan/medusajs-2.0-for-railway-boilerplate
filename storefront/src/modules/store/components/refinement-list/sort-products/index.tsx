@@ -50,7 +50,7 @@ const SortProducts = ({
           )
         }
       >
-        <Select.Trigger className="h-11 w-full px-4 border border-primary">
+        <Select.Trigger className="h-11 w-full px-4 border border-black ring-1">
           <Select.Value />
         </Select.Trigger>
 

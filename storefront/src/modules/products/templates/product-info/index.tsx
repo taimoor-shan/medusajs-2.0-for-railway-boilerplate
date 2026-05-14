@@ -38,7 +38,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </Heading> 
         
         <Text
-          className="text-medium text-body whitespace-pre-line"
+          className="text-body text-base whitespace-pre-line"
           data-testid="product-description"
         >
           {product.description}

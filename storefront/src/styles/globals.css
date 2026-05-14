@@ -263,6 +263,7 @@
 
   .prose p {
     @apply mb-4;
+     @apply text-body;
   }
 
   .prose h1 {

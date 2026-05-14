@@ -178,7 +178,7 @@ export default async function AboutPage(props: AboutPageProps) {
       </section>
 
       {/* Closing — craftsmanship note */}
-      <section className="border-t border-hairline bg-surface-card">
+      {/* <section className="border-t border-hairline bg-surface-card">
         <div className="content-container py-10 lg:py-14 text-center">
           <p className="font-display text-xl lg:text-2xl text-ink italic mb-2">
             &ldquo;Where nature meets craftsmanship.&rdquo;
@@ -188,7 +188,7 @@ export default async function AboutPage(props: AboutPageProps) {
             designed to last.
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
