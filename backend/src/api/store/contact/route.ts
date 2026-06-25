@@ -27,7 +27,7 @@ export async function POST(
     });
 
     if (error) {
-      return res.status(400).json({ message: error.message, ...error });
+      return res.status(400).json({ ...error, message: error.message });
     }
 
     return res.status(200).json({ success: true, data });

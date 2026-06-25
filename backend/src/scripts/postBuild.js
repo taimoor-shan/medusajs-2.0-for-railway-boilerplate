@@ -15,6 +15,13 @@ fs.copyFileSync(
   path.join(MEDUSA_SERVER_PATH, 'yarn.lock')
 );
 
+// Copy production start wrapper. package.json is copied into .medusa/server
+// with the same start script, so the wrapper must exist in both roots.
+fs.copyFileSync(
+  path.join(process.cwd(), 'start-production.js'),
+  path.join(MEDUSA_SERVER_PATH, 'start-production.js')
+);
+
 // Copy .env if it exists
 const envPath = path.join(process.cwd(), '.env');
 if (fs.existsSync(envPath)) {

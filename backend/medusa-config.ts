@@ -1,14 +1,18 @@
 import { loadEnv, defineConfig, Modules } from '@medusajs/utils'
 
+console.log("cwd:", process.cwd())
+console.log("DATABASE_URL:", process.env.DATABASE_URL)
+console.log("REDIS_URL:", process.env.REDIS_URL)
+
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 const backendUrl =
   process.env.BACKEND_PUBLIC_URL ||
-  process.env.RAILWAY_PUBLIC_DOMAIN_VALUE ||
   'http://localhost:9000'
 
 module.exports = defineConfig({
   projectConfig: {
+    redisUrl: process.env.REDIS_URL,
     databaseUrl: process.env.DATABASE_URL,
     databaseDriverOptions: process.env.NODE_ENV === 'production'
       ? { ssl: { rejectUnauthorized: false } }
@@ -27,7 +31,7 @@ module.exports = defineConfig({
       resolve: '@medusajs/file',
       options: {
         providers: [
-          // Priority 1: Cloudflare R2 (S3-compatible) — free tier, zero egress
+          // Cloudflare R2 (S3-compatible) — free tier, zero egress
           // Set S3_FILE_URL, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_REGION, S3_BUCKET to activate
           ...(process.env.S3_FILE_URL &&
           process.env.S3_ACCESS_KEY_ID &&
@@ -50,23 +54,7 @@ module.exports = defineConfig({
                   },
                 },
               ]
-            // Priority 2: MinIO (legacy Railway setup — kept for backward compat)
-            : process.env.MINIO_ENDPOINT &&
-              process.env.MINIO_ACCESS_KEY &&
-              process.env.MINIO_SECRET_KEY
-            ? [
-                {
-                  resolve: './src/modules/minio-file',
-                  id: 'minio',
-                  options: {
-                    endPoint: process.env.MINIO_ENDPOINT,
-                    accessKey: process.env.MINIO_ACCESS_KEY,
-                    secretKey: process.env.MINIO_SECRET_KEY,
-                    bucket: process.env.MINIO_BUCKET,
-                  },
-                },
-              ]
-            // Priority 3: Local filesystem (default for development)
+            // Local filesystem (default)
             : [
                 {
                   resolve: '@medusajs/file-local',
