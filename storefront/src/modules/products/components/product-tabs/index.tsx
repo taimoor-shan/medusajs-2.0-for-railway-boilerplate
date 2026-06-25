@@ -83,7 +83,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     <div className="w-full divide-y divide-ui-border-base border-y border-hairline">
       {sections.map((section, i) => (
         <div key={i}>
-          <h2 className="pt-4 text-xl font-medium text-ink">
+          <h2 className="pt-4 text-2xl font-medium text-ink">
             {section.label}
           </h2>
           {section.component}
@@ -98,7 +98,7 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
     <div className="text-sm py-4">
       <ul className="list-disc pl-4 flex flex-col gap-y-2 marker:text-primary">
         {features.map((feature, i) => (
-          <li key={i} className="text-body">
+          <li key={i} className="text-body text-base">
             {feature}
           </li>
         ))}
@@ -109,8 +109,8 @@ const KeyFeaturesTab = ({ features }: { features: string[] }) => {
 
 const CareTab = ({ instructions }: { instructions: string }) => {
   return (
-    <div className="text-sm py-4">
-      <p className="text-body leading-loose">{instructions}</p>
+    <div className=" py-4">
+      <p className="text-base leading-loose">{instructions}</p>
     </div>
   )
 }
@@ -221,7 +221,7 @@ const SpecificationsTab = ({ product, pot, isConfigured }: SpecificationsTabProp
             {Object.entries(potSpecs).map(([key, value], i) => (
               <div key={i} className="flex flex-col gap-y-1">
                 <span className="font-semibold text-ink">{key}</span>
-                <p className="text-body">{value}</p>
+                <p className="text-body text-base">{value}</p>
               </div>
             ))}
           </div>

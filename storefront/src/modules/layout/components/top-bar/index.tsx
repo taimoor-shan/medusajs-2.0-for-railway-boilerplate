@@ -198,17 +198,17 @@ export default function TopBar({
           
           <a
             href="tel:+1234567890"
-            className="flex items-center gap-x-1.5 text-xs font-light hover:opacity-80 transition-opacity"
+            className="flex items-center gap-x-1.5 text-sm font-light hover:opacity-80 transition-opacity"
           >
-            <Phone className="w-3 h-3" strokeWidth={1} />
+            <Phone className="w-4 h-4" strokeWidth={1} />
             <span>+1 (234) 567-890</span>
           </a>
           <a
-            href="mailto:info@luxelinen.com"
-            className="flex items-center gap-x-1.5 text-xs font-light hover:opacity-80 transition-opacity"
+            href="mailto:info@infinytree.com"
+            className="flex items-center gap-x-1.5 text-sm font-light hover:opacity-80 transition-opacity"
           >
-            <Mail className="w-3 h-3" strokeWidth={1} />
-            <span>info@luxelinen.com</span>
+            <Mail className="w-4 h-4" strokeWidth={1} />
+            <span>info@infinytree.com</span>
           </a>
         </div>
 
