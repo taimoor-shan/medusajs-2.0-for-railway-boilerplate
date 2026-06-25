@@ -16,18 +16,26 @@ const StoreTemplate = ({
   countryCode: string
 }) => {
   const pageNumber = page ? parseInt(page) : 1
-  const sort = sortBy || "created_at"
+  const sort = sortBy || "price_desc"
 
   return (
     <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
+      className="flex flex-col py-10 content-container"
       data-testid="category-container"
     >
-      <RefinementList sortBy={sort} />
+      {/* Top bar: title on left, filters on right */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-hairline gap-4">
+        <h1
+          className="text-2xl sm:text-3xl font-display text-ink"
+          data-testid="store-page-title"
+        >
+          All Products
+        </h1>
+        <RefinementList sortBy={sort} />
+      </div>
+
+      {/* Full-width product grid */}
       <div className="w-full">
-        <div className="mb-8 text-2xl-semi">
-          <h1 data-testid="store-page-title">All products</h1>
-        </div>
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}

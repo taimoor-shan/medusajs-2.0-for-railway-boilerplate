@@ -27,9 +27,33 @@ module.exports = defineConfig({
       resolve: '@medusajs/file',
       options: {
         providers: [
-          ...(process.env.MINIO_ENDPOINT &&
-          process.env.MINIO_ACCESS_KEY &&
-          process.env.MINIO_SECRET_KEY
+          // Priority 1: Cloudflare R2 (S3-compatible) — free tier, zero egress
+          // Set S3_FILE_URL, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_REGION, S3_BUCKET to activate
+          ...(process.env.S3_FILE_URL &&
+          process.env.S3_ACCESS_KEY_ID &&
+          process.env.S3_SECRET_ACCESS_KEY
+            ? [
+                {
+                  resolve: '@medusajs/file-s3',
+                  id: 's3',
+                  options: {
+                    file_url: process.env.S3_FILE_URL,
+                    access_key_id: process.env.S3_ACCESS_KEY_ID,
+                    secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+                    region: process.env.S3_REGION || 'auto',
+                    bucket: process.env.S3_BUCKET || 'medusa-media',
+                    endpoint: process.env.S3_ENDPOINT,
+                    // Required for R2/non-AWS S3 providers
+                    additional_config: {
+                      forcePathStyle: true,
+                    },
+                  },
+                },
+              ]
+            // Priority 2: MinIO (legacy Railway setup — kept for backward compat)
+            : process.env.MINIO_ENDPOINT &&
+              process.env.MINIO_ACCESS_KEY &&
+              process.env.MINIO_SECRET_KEY
             ? [
                 {
                   resolve: './src/modules/minio-file',
@@ -42,6 +66,7 @@ module.exports = defineConfig({
                   },
                 },
               ]
+            // Priority 3: Local filesystem (default for development)
             : [
                 {
                   resolve: '@medusajs/file-local',
@@ -83,10 +108,17 @@ module.exports = defineConfig({
             id: "stripe",
             options: {
               apiKey: process.env.STRIPE_API_KEY,
+              automatic_payment_methods: true,
             },
           },
         ],
       },
+    },
+    {
+      resolve: "@medusajs/medusa/translation",
+    },
+    {
+      resolve: "@medusajs/medusa/product",
     },
 
   ],
@@ -107,5 +139,8 @@ module.exports = defineConfig({
         },
       }
     },
+  },
+  featureFlags: {
+    translation: true,
   },
 })

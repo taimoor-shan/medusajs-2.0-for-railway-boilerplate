@@ -8,9 +8,9 @@ const About = ({ content }: AboutProps) => {
   }
 
   return (
-    <section className="content-container pt-24">
+    <section className="content-container lg:pt-24 pt-10">
       <div
-        className="prose max-w-5xl text-center mx-auto"
+        className="prose max-w-5xl text-center text-body mx-auto"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </section>

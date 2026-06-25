@@ -3,71 +3,54 @@
 @import "tailwindcss/utilities";
 
 :root {
-  /* Brand */
-  --color-primary: #b6895b;
-  --color-primary-hover: #9c734c;
-
-  /* Background */
-  --color-bg-base: #ffffff;
-  --color-bg-subtle: #f9fafb;
-  --color-bg-elevated: #ffffff;
-  --color-overlay: rgba(0, 0, 0, 0.7);
+  /* Surfaces */
+  --bg-base: #faf9f5;
+  --bg-base-hover: #f5f0e8;
+  --bg-subtle: #efe9de;
+  --bg-interactive: #cc785c;
+  --bg-disabled: #e6dfd8;
+  --bg-field: #faf9f5;
+  --bg-field-hover: #f5f0e8;
 
   /* Text */
-  --color-text-primary: #111827;
-  --color-text-secondary: #6b7280;
-  --color-text-on-primary: #ffffff;
+  --fg-base: #141413;
+  --fg-subtle: #3d3d3a;
+  --fg-muted: #6c6a64;
+  --fg-disabled: #8e8b82;
+  --fg-interactive: #cc785c;
+  --fg-interactive-hover: #a9583e;
+  --fg-on-color: #ffffff;
+  --fg-on-inverted: #141413;
+  --fg-error: #c64545;
+
+  /* Contrast (Button primary text) */
+  --contrast-fg-primary: #ffffff;
 
   /* Borders */
-  --color-border-base: #e5e7eb;
-  --color-border-strong: #d1d5db;
+  --border-base: #e6dfd8;
+  --border-error: #c64545;
 
-  /* Radius */
-  --radius-base: 8px;
-  --radius-lg: 16px;
+  /* Buttons — color */
+  --button-inverted: #cc785c;
+  --button-inverted-hover: #a9583e;
+  --button-inverted-pressed: #a9583e;
+  --button-neutral: #faf9f5;
+  --button-neutral-hover: #f5f0e8;
+  --button-neutral-pressed: #e8e0d2;
+  --button-danger: #c64545;
+  --button-danger-hover: #a53838;
+  --button-danger-pressed: #a53838;
+  --button-transparent: transparent;
+  --button-transparent-hover: rgba(20, 20, 19, 0.05);
+  --button-transparent-pressed: rgba(20, 20, 19, 0.1);
 
-  /* Animation */
-  --duration-fast: 150ms;
-  --duration-base: 200ms;
-
-  /* @medusajs/ui-preset overrides */
-  --bg-base: var(--color-bg-base);
-  --bg-base-hover: var(--color-bg-subtle);
-  --bg-base-pressed: var(--color-bg-subtle);
-  --bg-subtle: var(--color-bg-subtle);
-  --bg-subtle-hover: var(--color-bg-base);
-  --bg-component: var(--color-bg-elevated);
-  --bg-component-hover: var(--color-bg-subtle);
-  --bg-interactive: var(--color-primary);
-  --bg-overlay: var(--color-overlay);
-
-  --fg-base: var(--color-text-primary);
-  --fg-subtle: var(--color-text-secondary);
-  --fg-interactive: var(--color-primary);
-  --fg-interactive-hover: var(--color-primary-hover);
-  --fg-on-color: var(--color-text-on-primary);
-  --fg-on-inverted: var(--color-text-on-primary);
-  --contrast-fg-primary: var(--color-text-on-primary);
-  --contrast-fg-secondary: var(--color-text-on-primary);
-
-  --border-base: var(--color-border-base);
-  --border-strong: var(--color-border-strong);
-  --border-interactive: var(--color-primary);
-
-  --button-neutral: var(--color-primary);
-  --button-neutral-hover: var(--color-primary-hover);
-  --button-neutral-pressed: var(--color-primary-hover);
-
-  --button-inverted: var(--color-primary);
-  --button-inverted-hover: var(--color-primary-hover);
-  --button-inverted-pressed: var(--color-primary-hover);
-
-  --buttons-neutral: var(--color-primary);
-  --buttons-neutral-focus: var(--color-primary-hover);
-  --buttons-inverted: var(--color-primary);
-  --buttons-inverted-focus: var(--color-primary-hover);
-  --buttons-danger: #dc2626;
-  --buttons-danger-focus: #b91c1c;
+  /* Buttons — box-shadow (flat design = no shadow) */
+  --buttons-neutral: none;
+  --buttons-neutral-focus: none;
+  --buttons-inverted: none;
+  --buttons-inverted-focus: none;
+  --buttons-danger: none;
+  --buttons-danger-focus: none;
 }
 
 @layer base {
@@ -75,24 +58,41 @@
     @apply font-sans;
   }
 
+  input:focus,
+  textarea:focus,
+  select:focus {
+    --tw-ring-color: #cc785c;
+    border-color: #cc785c;
+  }
+
   h1,
   h2,
-  h3,
+  h3 {
+    @apply font-display;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    font-style: normal;
+    color: var(--fg-base);
+    font-optical-sizing: auto;
+  }
+
   h4,
   h5,
   h6 {
-    font-family: "Marcellus", serif;
+    @apply font-display;
     font-weight: 400;
     font-style: normal;
-    color: var(--color-text-primary);
+    color: var(--fg-base);
+    font-optical-sizing: auto;
   }
 
   .h1-core,
   .h2-core,
   .h3-core {
-    font-family: "Marcellus", serif;
+    @apply font-display;
     font-weight: 400;
     font-style: normal;
+    font-optical-sizing: auto;
   }
 }
 
@@ -129,9 +129,9 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid var(--color-border-strong);
-    -webkit-text-fill-color: var(--color-text-primary);
-    -webkit-box-shadow: 0 0 0px 1000px var(--color-bg-base) inset;
+    border: 1px solid #d4c9bc;
+    -webkit-text-fill-color: #141413;
+    -webkit-box-shadow: 0 0 0px 1000px #faf9f5 inset;
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -149,7 +149,61 @@
   }
 
   .contrast-btn {
-    @apply px-4 py-2 border border-border rounded-full hover:bg-primary hover:text-on-primary transition-colors duration-200 ease-in;
+    @apply px-4 py-2 border border-hairline rounded-full hover:bg-primary hover:text-on-primary transition-colors duration-200 ease-in;
+  }
+
+  /* DESIGN.md button component classes */
+
+  .btn-primary {
+    @apply bg-primary text-on-primary font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center transition-colors;
+  }
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-primary-hover;
+  }
+  .btn-primary:disabled {
+    @apply bg-primary-disabled text-muted cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-canvas text-ink font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center border border-hairline transition-colors;
+  }
+  .btn-secondary:hover:not(:disabled) {
+    @apply bg-surface-soft;
+  }
+
+  .btn-secondary-on-dark {
+    @apply bg-surface-dark-elevated text-on-dark font-sans text-sm font-medium leading-none rounded-md h-10 px-5 inline-flex items-center justify-center transition-colors;
+  }
+  .btn-secondary-on-dark:hover:not(:disabled) {
+    @apply bg-surface-dark-soft;
+  }
+
+  .btn-text-link {
+    @apply text-ink font-sans text-sm font-medium bg-transparent border-none cursor-pointer inline-flex items-center transition-colors;
+  }
+  .btn-text-link:hover {
+    @apply text-body;
+  }
+
+  .btn-icon-circular {
+    @apply bg-canvas text-ink rounded-full w-9 h-9 inline-flex items-center justify-center border border-hairline transition-colors cursor-pointer;
+  }
+  .btn-icon-circular:hover {
+    @apply bg-surface-soft;
+  }
+
+  .btn-icon-circular-dark {
+    @apply bg-surface-dark-elevated text-on-dark rounded-full w-9 h-9 inline-flex items-center justify-center border-none transition-colors cursor-pointer;
+  }
+  .btn-icon-circular-dark:hover {
+    @apply bg-surface-dark-soft;
+  }
+
+  .text-link {
+    @apply text-primary font-sans text-sm font-medium bg-transparent border-none cursor-pointer underline-offset-4;
+  }
+  .text-link:hover {
+    @apply underline;
   }
 
   .text-xsmall-regular {
@@ -209,14 +263,15 @@
 
   .prose p {
     @apply mb-4;
+     @apply text-body;
   }
 
   .prose h1 {
-    @apply text-2xl leading-tight mb-4 sm:text-3xl md:text-4xl;
+    @apply text-2xl leading-tight mb-4 sm:text-3xl md:text-5xl;
   }
 
   .prose h2 {
-    @apply text-xl  mt-4 mb-6 sm:text-2xl md:text-3xl;
+    @apply text-xl  mt-8 mb-6 sm:text-2xl md:text-3xl;
   }
 
   .prose h3 {
@@ -240,7 +295,7 @@
   }
 
   .prose blockquote {
-    @apply border-l-2 border-ui-border-base pl-4 italic text-ui-fg-subtle my-6;
+    @apply border-l-2 border-hairline pl-4 italic text-body my-6;
   }
 
   .prose a {
@@ -254,6 +309,30 @@
   }
 
   .prose hr {
-    @apply my-8 border-ui-border-base;
+    @apply my-8 border-hairline;
   }
+
+  .prose table {
+    @apply w-full border-collapse my-6 text-sm;
+  }
+
+  .prose thead th {
+    @apply text-left font-semibold text-ink py-3 px-4 border-b-2 border-hairline bg-surface-card;
+  }
+
+  .prose tbody td {
+    @apply py-3 px-4 border-b border-hairline;
+  }
+
+  .prose strong {
+    @apply font-semibold text-ink;
+  }
+
+  .prose em {
+    @apply italic;
+  }
+}
+
+.outline-none{
+  outline: none;
 }

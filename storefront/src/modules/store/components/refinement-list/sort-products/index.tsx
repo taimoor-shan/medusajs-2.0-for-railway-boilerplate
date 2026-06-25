@@ -1,12 +1,18 @@
 "use client"
 
-import FilterRadioGroup from "@modules/common/components/filter-radio-group"
+import { Select } from "@medusajs/ui"
 
-export type SortOptions = "price_asc" | "price_desc" | "created_at"
+export type SortOptions =
+  | "price_asc"
+  | "price_desc"
+  | "created_at"
 
 type SortProductsProps = {
   sortBy: SortOptions
-  setQueryParams: (name: string, value: SortOptions) => void
+  setQueryParams: (
+    name: string,
+    value: SortOptions
+  ) => void
   "data-testid"?: string
 }
 
@@ -17,11 +23,11 @@ const sortOptions = [
   },
   {
     value: "price_asc",
-    label: "Price: Low -> High",
+    label: "Price: Low → High",
   },
   {
     value: "price_desc",
-    label: "Price: High -> Low",
+    label: "Price: High → Low",
   },
 ]
 
@@ -30,18 +36,40 @@ const SortProducts = ({
   sortBy,
   setQueryParams,
 }: SortProductsProps) => {
-  const handleChange = (value: SortOptions) => {
-    setQueryParams("sortBy", value)
-  }
-
   return (
-    <FilterRadioGroup
-      title="Sort by"
-      items={sortOptions}
-      value={sortBy}
-      handleChange={handleChange}
+    <div
+      className="w-full sm:w-[180px]"
       data-testid={dataTestId}
-    />
+    >
+      <Select
+        value={sortBy}
+        onValueChange={(value) =>
+          setQueryParams(
+            "sortBy",
+            value as SortOptions
+          )
+        }
+      >
+        <Select.Trigger className="h-11 w-full px-4 border border-black ring-1">
+          <Select.Value />
+        </Select.Trigger>
+
+        <Select.Content
+          position="popper"
+          className="rounded"
+        >
+          {sortOptions.map((option) => (
+            <Select.Item
+              key={option.value}
+              value={option.value}
+              className="text-sm"
+            >
+              {option.label}
+            </Select.Item>
+          ))}
+        </Select.Content>
+      </Select>
+    </div>
   )
 }
 

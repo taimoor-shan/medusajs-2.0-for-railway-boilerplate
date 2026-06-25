@@ -21,11 +21,14 @@ export default function ProductPrice({
     return <div className="block w-32 h-9 bg-gray-100 animate-pulse" />
   }
 
+  const isDiscounted =
+    selectedPrice.calculated_price_number < selectedPrice.original_price_number
+
   return (
-    <div className="flex flex-col text-ui-fg-base">
+    <div className="flex items-center gap-x-2 text-ink">
       <span
-        className={clx("text-xl-semi", {
-          "text-ui-fg-interactive": selectedPrice.price_type === "sale",
+        className={clx("text-lg", {
+          "text-primary": isDiscounted,
         })}
       >
         {!variant && "From "}
@@ -36,10 +39,10 @@ export default function ProductPrice({
           {selectedPrice.calculated_price}
         </span>
       </span>
-      {selectedPrice.price_type === "sale" && (
+      {isDiscounted && (
         <>
           <p>
-            <span className="text-ui-fg-subtle">Original: </span>
+            <span className="text-body">Original: </span>
             <span
               className="line-through"
               data-testid="original-product-price"
@@ -48,7 +51,7 @@ export default function ProductPrice({
               {selectedPrice.original_price}
             </span>
           </p>
-          <span className="text-ui-fg-interactive">
+          <span className="text-primary">
             -{selectedPrice.percentage_diff}%
           </span>
         </>

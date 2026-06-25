@@ -1,8 +1,10 @@
 import React, { Suspense } from "react"
+import Features from "@modules/home/components/features"
 
 import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
+import ProductInfoBlocks from "@modules/products/components/product-info-blocks"
 import ProductTabs from "@modules/products/components/product-tabs"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
@@ -32,18 +34,19 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   return (
     <>
       <div
-        className="content-container  flex flex-col small:flex-row small:items-start py-6 relative"
+        className="content-container flex flex-col small:flex-row small:items-start py-6 gap-y-8 small:gap-x-20 relative"
         data-testid="product-container"
       >
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
-          <ProductInfo product={product} />
-          <ProductTabs product={product} />
-        </div>
-        <div className="block w-full relative">
+        {/* Left Column - Image Gallery */}
+        <div className="block w-full small:w-[55%] small:sticky small:top-28">
           <ImageGallery images={images} />
         </div>
-        <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-12">
-          <ProductOnboardingCta />
+
+        {/* Right Column - Product Details sticky wrapper */}
+        <div className="flex flex-col w-full small:w-[45%] pb-8 gap-y-12">
+
+          <ProductInfo product={product} />
+          
           <Suspense
             fallback={
               <ProductActions
@@ -55,8 +58,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
           >
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
+
+<ProductTabs product={product} />
+
+          <ProductOnboardingCta />
         </div>
       </div>
+      {/* <div className="content-container my-16 small:my-32">
+        <ProductInfoBlocks product={product} />
+      </div> */}
+    <Features />
       <div
         className="content-container my-16 small:my-32"
         data-testid="related-products-container"
