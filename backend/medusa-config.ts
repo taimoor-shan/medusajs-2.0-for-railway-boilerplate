@@ -1,8 +1,5 @@
+import path from 'path'
 import { loadEnv, defineConfig, Modules } from '@medusajs/utils'
-
-console.log("cwd:", process.cwd())
-console.log("DATABASE_URL:", process.env.DATABASE_URL)
-console.log("REDIS_URL:", process.env.REDIS_URL)
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
@@ -56,14 +53,27 @@ module.exports = defineConfig({
               ]
             // Local filesystem (default)
             : [
-                {
-                  resolve: '@medusajs/file-local',
-                  id: 'local',
-                  options: {
-                    upload_dir: 'static',
-                    backend_url: `${backendUrl}/static`,
-                  },
-                },
+                (() => {
+                  const isProduction = process.env.NODE_ENV === 'production'
+                  const uploadDir =
+                    process.env.UPLOAD_DIR ?? path.resolve(__dirname, 'static')
+
+                  if (isProduction && !process.env.UPLOAD_DIR) {
+                    throw new Error(
+                      'UPLOAD_DIR must be configured in production. ' +
+                        'Example: UPLOAD_DIR=/srv/medusa/uploads',
+                    )
+                  }
+
+                  return {
+                    resolve: '@medusajs/file-local',
+                    id: 'local',
+                    options: {
+                      upload_dir: uploadDir,
+                      backend_url: `${backendUrl}/static`,
+                    },
+                  }
+                })(),
               ]),
         ],
       },
