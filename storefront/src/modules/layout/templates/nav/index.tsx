@@ -20,7 +20,7 @@ export default async function Nav() {
     getLocale(),
     retrieveStore(),
   ])
-  const storeName = store?.name || "Luxe Linen"
+  const storeName = store?.name || "Infinytree"
 
   return (
     <HeaderWrapper

@@ -8,7 +8,7 @@ import NewsletterForm from "@modules/layout/components/newsletter-form"
 
 export default async function Footer() {
   const store = await retrieveStore()
-  const storeName = store?.name || "Luxe Linen"
+  const storeName = store?.name || "Infinytree"
   const { collections } = await listCollections({
     fields: "*products",
   })
