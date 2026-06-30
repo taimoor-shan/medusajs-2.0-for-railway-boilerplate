@@ -232,7 +232,7 @@ const SpecificationsTab = ({ product, pot, isConfigured }: SpecificationsTabProp
         <p className="text-muted">No specifications available.</p>
       )}
 
-      {isConfigured && <WithdrawalNotice variant="inline" />}
+      {/* {isConfigured && <WithdrawalNotice variant="inline" />} */}
     </div>
   )
 }

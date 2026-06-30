@@ -61,7 +61,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
 
 <ProductTabs product={product} />
 
-          {/* <ProductOnboardingCta /> */}
+          <ProductOnboardingCta />
         </div>
       </div>
       {/* <div className="content-container my-16 small:my-32">
