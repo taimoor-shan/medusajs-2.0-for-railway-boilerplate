@@ -37,10 +37,6 @@ export const listPages = async ({
   offset?: number
   q?: string
 }) => {
-  const next = {
-    ...(await getCacheOptions("pages")),
-  }
-
   return sdk.client.fetch<PagesResponse>("/store/pages", {
     method: "GET",
     query: {
@@ -48,21 +44,15 @@ export const listPages = async ({
       offset,
       q,
     },
-    next,
-    cache: "force-cache",
+    cache: "no-store",
   })
 }
 
 export const retrievePageBySlug = async (slug: string) => {
-  const next = {
-    ...(await getCacheOptions(`page-${slug}`)),
-  }
-
   return sdk.client
     .fetch<PageResponse>(`/store/pages/${slug}`, {
       method: "GET",
-      next,
-      cache: "force-cache",
+      cache: "no-store",
     })
     .then(({ page }) => page)
     .catch(() => null)
