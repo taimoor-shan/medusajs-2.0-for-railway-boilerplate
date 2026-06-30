@@ -8,7 +8,7 @@ export default async function CheckoutLayout({
   children: React.ReactNode
 }) {
   const store = await retrieveStore()
-  const storeName = store?.name || "Luxe Linen"
+  const storeName = store?.name || "Infinytree"
 
   return (
     <div className="w-full bg-canvas relative small:min-h-screen">

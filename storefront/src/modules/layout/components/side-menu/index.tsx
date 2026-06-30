@@ -30,7 +30,7 @@ const SideMenu = ({
   regions,
   locales,
   currentLocale,
-  storeName = "Luxe Linen",
+  storeName = "Infinytree",
   triggerClassName,
 }: SideMenuProps) => {
   const countryToggleState = useToggleState()
